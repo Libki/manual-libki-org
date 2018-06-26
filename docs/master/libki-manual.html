@@ -479,13 +479,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Manual for Libki version master, last updated on 2018-06-26.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/libki-banner.png" alt="Libki Kiosk Management System">
 </div>
+</div>
+<div class="paragraph">
+<p>Manual for Libki version master, last updated on 2018-06-26.</p>
 </div>
 </div>
 </div>
@@ -887,14 +887,37 @@ cat installer/cron/rootcron | crontab -</code></pre>
     terminator CR
     require_sip_auth 0
     enable_split_messages 0
-    fee_limit 5.00 == Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit
-    deny_on charge_privileges_denied    == You can set SIP2 patron status flags which will deny patrons the ability to log in
-    deny_on recall_privileges_denied    == You can set as many or as few as you want. Delete these if you don't want to deny patrons.
-    deny_on excessive_outstanding_fines == The full listing is defined in the SIP2 protocol specification
-    deny_on_field AB:This is the reason we are daying you  == You can require arbitrary SIP fields to have a value of Y for patrons to be allowed to log in.
-                                                           == The format of the setting is Field:Message
+    fee_limit 5.00 <i class="conum" data-value="1"></i><b>(1)</b>
+    deny_on charge_privileges_denied <i class="conum" data-value="2"></i><b>(2)</b>
+    deny_on recall_privileges_denied <i class="conum" data-value="3"></i><b>(3)</b>
+    deny_on excessive_outstanding_fines <i class="conum" data-value="4"></i><b>(4)</b>
+    deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="5"></i><b>(5)</b>
 &lt;/SIP&gt;</pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can set SIP2 patron status flags which will deny patrons the ability to log in</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>You can set as many or as few as you want. Delete these if you don&#8217;t want to deny patrons.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The full listing is defined in the SIP2 protocol specification</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>You can require arbitrary SIP fields to have a value of Y for patrons to be allowed to log in. The format of the setting is <em>&lt;Field&gt;:&lt;Message&gt;</em>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The SIP section requires the following parameters:</p>
@@ -923,19 +946,19 @@ cat installer/cron/rootcron | crontab -</code></pre>
 <p>terminator: This is either CR or CRLF depending on the SIP server. Default is CR</p>
 </li>
 <li>
-<p>require\_sip\_auth: Does this SIP server require a message 93 login before it can be used? If so this should be set to 1 and the username/password fields should be populated. This should be set to 1 for Koha.</p>
+<p>require_sip_auth: Does this SIP server require a message 93 login before it can be used? If so this should be set to 1 and the username/password fields should be populated. This should be set to 1 for Koha.</p>
 </li>
 <li>
-<p>enable\_split\_message: IF thie server supports split messages you can enable this. This should be set to 0 for Koha.</p>
+<p>enable_split_message: IF thie server supports split messages you can enable this. This should be set to 0 for Koha.</p>
 </li>
 <li>
-<p>fee\_limit: As notated, this can be a set number or a SIP field to check. If the fee limit is exceeded, the user login will be denied.</p>
+<p>fee_limit: As notated, this can be a set number or a SIP field to check. If the fee limit is exceeded, the user login will be denied.</p>
 </li>
 <li>
-<p>deny\_on: This can be repeated to deny logins based on the patron information flags detailed in the SIP2 protocol specification.</p>
+<p>deny_on: This can be repeated to deny logins based on the patron information flags detailed in the SIP2 protocol specification.</p>
 </li>
 <li>
-<p>deny\_on\_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".</p>
+<p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".</p>
 </li>
 </ul>
 </div>
@@ -1304,7 +1327,7 @@ The value of <strong>Extend time at</strong> should be a whole number.
 <div class="sect4">
 <h5 id="_prefix_for_guest_passes">Prefix for guest passes</h5>
 <div class="paragraph">
-<p>The phrase that each guest pass username should start with. If left empty, the phrase "guest" will be used \(  e.g. guest1, guest2, guest3, etc \).</p>
+<p>The phrase that each guest pass username should start with. If left empty, the phrase "guest" will be used (  e.g. guest1, guest2, guest3, etc ).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1340,7 +1363,7 @@ The value of <strong>Passes to create per batch</strong> should be a whole numbe
 <div class="sect4">
 <h5 id="_username_label">Username label</h5>
 <div class="paragraph">
-<p>The text in this field will be prepended to the guest username, \( e.g. <em>"Username:"</em> \).</p>
+<p>The text in this field will be prepended to the guest username, ( e.g. <em>"Username:"</em> ).</p>
 </div>
 </div>
 <div class="sect4">
@@ -1400,7 +1423,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>google_cloud_print:
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">google_cloud_print:
   client_id: 893746288161-libc4aj9loitf5i2lcuuonj6ggqb37uc.apps.googleusercontent.com
   client_secret: dEjNmggj-PS9_LnvP92jIYu3
 
@@ -1419,7 +1442,7 @@ printers:
     name: monochrome
     ticket:
       color:
-        type: STANDARD_MONOCHROME</pre>
+        type: STANDARD_MONOCHROME</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1443,7 +1466,7 @@ printers:
 <div class="ulist">
 <ul>
 <li>
-<p>File an Issue on GitHub in the matching repository \( client, server, manual, etc&#8230;&#8203; \) for the issue \( for both enhancement <strong>and</strong> bug fixes \)</p>
+<p>File an Issue on GitHub in the matching repository ( client, server, manual, etc&#8230;&#8203; ) for the issue ( for both enhancement <strong>and</strong> bug fixes )</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1453,7 +1476,7 @@ printers:
 </div>
 </li>
 <li>
-<p>The subject line of your commit\(s\) should begin with "Issue XX: " followed by the description of what the patch does.</p>
+<p>The subject line of your commit(s) should begin with "Issue XX: " followed by the description of what the patch does.</p>
 </li>
 <li>
 <p>Include a hyperlink to the GitHub issue this patch resolves.</p>
@@ -1523,7 +1546,7 @@ printers:
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-06-26 10:42:45 UTC
+Last updated 2018-06-26 10:59:54 UTC
 </div>
 </div>
 </body>
