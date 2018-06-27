@@ -432,26 +432,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Libki Manual</h1>
 <div class="details">
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-06-26</span>
+<span id="revdate">2018-06-27</span>
 </div>
-</div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="images/libki-banner.png" alt="Libki Kiosk Management System">
-</div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle" class="title">Table of Contents</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_license">License</a></li>
 <li><a href="#_introduction">1. Introduction</a>
@@ -494,6 +485,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 </ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/libki-banner.png" alt="Libki Kiosk Management System">
+</div>
 </div>
 </div>
 </div>
@@ -570,7 +570,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">sudo su</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo su</code></pre>
 </div>
 </div>
 </div>
@@ -584,7 +584,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git -y</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git -y</code></pre>
 </div>
 </div>
 </div>
@@ -595,7 +595,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">git clone https://github.com/libki/libki-server.git</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/libki/libki-server.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -603,7 +603,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cd libki-server</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd libki-server</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -611,7 +611,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./install.sh</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">./install.sh</code></pre>
 </div>
 </div>
 </div>
@@ -622,7 +622,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git &amp;&amp; git clone https://github.com/libki/libki-server.git &amp;&amp; cd libki-server &amp;&amp; ./install.sh</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git &amp;&amp; git clone https://github.com/libki/libki-server.git &amp;&amp; cd libki-server &amp;&amp; ./install.sh</code></pre>
 </div>
 </div>
 </div>
@@ -637,14 +637,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt update &amp;&amp; apt upgrade -y</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y</code></pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_dependencies">2.2.1. Dependencies</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt install cpanm curl perl git make build-essential unzip mysql-server ntp -y</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt install cpanm curl perl git make build-essential unzip mysql-server ntp -y</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -652,7 +652,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt install libmysqlclient-dev libxml-parser-perl libxml-libxml-perl</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt install libmysqlclient-dev libxml-parser-perl libxml-libxml-perl</code></pre>
 </div>
 </div>
 </div>
@@ -663,7 +663,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">adduser libki</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">adduser libki</code></pre>
 </div>
 </div>
 </div>
@@ -674,7 +674,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">git clone https://github.com/libki/libki-server.git /home/libki/libki-server</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/libki/libki-server.git /home/libki/libki-server</code></pre>
 </div>
 </div>
 </div>
@@ -682,7 +682,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_install_needed_perl_modules">2.2.4. Install needed perl modules</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cd /home/libki/libki-server
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd /home/libki/libki-server
 cpanm -n --installdeps .</code></pre>
 </div>
 </div>
@@ -694,7 +694,7 @@ cpanm -n --installdeps .</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; ~/.bashrc</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; ~/.bashrc</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -702,7 +702,7 @@ cpanm -n --installdeps .</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; /home/libki/.bashrc</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; /home/libki/.bashrc</code></pre>
 </div>
 </div>
 </div>
@@ -737,7 +737,7 @@ EXIT;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./installer/update_db.pl</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">./installer/update_db.pl</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -745,7 +745,7 @@ EXIT;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cp libki_local.conf.example libki_local.conf
+<pre class="highlight"><code class="language-bash" data-lang="bash">cp libki_local.conf.example libki_local.conf
 nano libki_local.conf</code></pre>
 </div>
 </div>
@@ -757,7 +757,7 @@ nano libki_local.conf</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./script/administration/create_user.pl -u ADMINUSERNAME -p ADMINPASSWORD -s</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">./script/administration/create_user.pl -u ADMINUSERNAME -p ADMINPASSWORD -s</code></pre>
 </div>
 </div>
 </div>
@@ -768,7 +768,7 @@ nano libki_local.conf</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cp log4perl.conf.example log4perl.conf</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">cp log4perl.conf.example log4perl.conf</code></pre>
 </div>
 </div>
 </div>
@@ -782,7 +782,7 @@ nano libki_local.conf</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cat installer/cron/libkicron | crontab -u libki -
+<pre class="highlight"><code class="language-bash" data-lang="bash">cat installer/cron/libkicron | crontab -u libki -
 cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 </div>
@@ -794,7 +794,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cp init-script-template /etc/init.d/libki</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">cp init-script-template /etc/init.d/libki</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -805,7 +805,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">update-rc.d libki defaults</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">update-rc.d libki defaults</code></pre>
 </div>
 </div>
 </div>
@@ -813,7 +813,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 <h4 id="_start_the_server">2.2.10. Start the server</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">service libki start</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -834,7 +834,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">apt-get install apache2</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">apt-get install apache2</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -846,7 +846,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">cd /home/libki/libki-server</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd /home/libki/libki-server</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -861,7 +861,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">./script/setup/apache_setup.sh</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">./script/setup/apache_setup.sh</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -873,7 +873,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">service apache2 restart</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">service apache2 restart</code></pre>
 </div>
 </div>
 </div>
@@ -977,7 +977,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">sudo apt-get install links</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get install links</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -985,7 +985,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">links 127.0.0.1:80</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">links 127.0.0.1:80</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -993,7 +993,7 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-console" data-lang="console">links 127.0.0.1:3000</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">links 127.0.0.1:3000</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1431,7 +1431,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">google_cloud_print:
+<pre class="highlight"><code class="language-json" data-lang="json">google_cloud_print:
   client_id: 893746288161-libc4aj9loitf5i2lcuuonj6ggqb37uc.apps.googleusercontent.com
   client_secret: dEjNmggj-PS9_LnvP92jIYu3
 
@@ -1584,7 +1584,7 @@ printers:
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-06-26 15:19:42 UTC
+Last updated 2018-06-27 14:10:45 UTC
 </div>
 </div>
 </body>
