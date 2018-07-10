@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-07-06</span>
+<span id="revdate">2018-07-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -473,15 +473,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_desktop_client">5. Desktop client</a></li>
-<li><a href="#_contributing_to_libki">6. Contributing to Libki</a>
+<li><a href="#_backing_up_and_restoring_your_libki_database">6. Backing up and restoring your Libki database</a>
 <ul class="sectlevel2">
-<li><a href="#_contributing_to_the_libki_source_code">6.1. Contributing to the Libki source code</a></li>
-<li><a href="#_contributing_to_the_manual">6.2. Contributing to the Manual</a></li>
+<li><a href="#_backing_up">6.1. Backing up</a></li>
+<li><a href="#_restoring_a_backup">6.2. Restoring a backup</a></li>
 </ul>
 </li>
-<li><a href="#_credits">7. Credits</a>
+<li><a href="#_contributing_to_libki">7. Contributing to Libki</a>
 <ul class="sectlevel2">
-<li><a href="#_authors">7.1. Authors</a></li>
+<li><a href="#_contributing_to_the_libki_source_code">7.1. Contributing to the Libki source code</a></li>
+<li><a href="#_contributing_to_the_manual">7.2. Contributing to the Manual</a></li>
+</ul>
+</li>
+<li><a href="#_credits">8. Credits</a>
+<ul class="sectlevel2">
+<li><a href="#_authors">8.1. Authors</a></li>
 </ul>
 </li>
 </ul>
@@ -1472,12 +1478,108 @@ printers:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing_to_libki">6. Contributing to Libki</h2>
+<h2 id="_backing_up_and_restoring_your_libki_database">6. Backing up and restoring your Libki database</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is <strong>HIGHLY</strong> adviced to only doing backups and restorations of the database while the system is not being used!</p>
+</div>
+<div class="sect2">
+<h3 id="_backing_up">6.1. Backing up</h3>
+<div class="paragraph">
+<p>The backup program is intended to be used on a server with a libki user.</p>
+</div>
+<div class="paragraph">
+<p>A backup folder will be created in the libki user&#8217;s home directory, where the backups are stored.</p>
+</div>
+<div class="paragraph">
+<p>Please note that this will only create local backups. It is adviced to transfer them to a safe location. A guide on how to transfer automatic backups to an FTP server will be added later.</p>
+</div>
+<div class="sect3">
+<h4 id="_make_a_backup_manually">6.1.1. Make a backup manually</h4>
+<div class="paragraph">
+<p>Simply run <code>libki-backup</code>.</p>
+</div>
+<div class="paragraph">
+<p>The backup will be created and stored in <code>/home/libki/backups</code>. The file name will contain date and time for the backup for easier identifying, i. e. <code>db_180706_19.30.sql</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_make_automatic_backups">6.1.2. Make automatic backups</h4>
+<div class="paragraph">
+<p>The backup program features a silent mode, perfect for when you don&#8217;t want any user input or text output. Run <code>libki-backup -s</code> to run it in silent mode.</p>
+</div>
+<div class="paragraph">
+<p>Automatic backups work the same way as the manual backups, but does not provide any output text. The backup file is created directly in <code>/home/libki/backups</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to make backups automatically according to a schedule, this is easiest done through crontab. I won&#8217;t go through how crontab works, but will provide some example schedules.</p>
+</div>
+<div class="paragraph">
+<p>Start by running <code>crontab -e</code>. You will probably want to use the default editor. Add the schedule at the bottom of the file.</p>
+</div>
+<div class="paragraph">
+<p><strong>Crontab examples</strong></p>
+</div>
+<div class="paragraph">
+<p>Daily backup at 02:00:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">0 2 * * * /usr/local/bin/libki-backup -s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Backup every Sunday evening:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">0 21 * * SUN /usr/local/bin/libki-backup -s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Backup the first date in every month at 01.15:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">15 1 1 * * /usr/local/bin/libki-backup -s</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restoring_a_backup">6.2. Restoring a backup</h3>
+<div class="paragraph">
+<p>Restoring a backup of the database will delete the current database, so be sure you really want to do this.</p>
+</div>
+<div class="paragraph">
+<p>Start by navigating to the folder containing the backup you want to restore. If the backup was created with the backup program, this folder will be <code>/home/libki/backups</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd /home/libki/backups</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the program and specify what backup you want to restore.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">libki-restore db_180706_19.30.sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your database is now at the point it was when the backup was created.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing_to_libki">7. Contributing to Libki</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_contributing_to_the_libki_source_code">6.1. Contributing to the Libki source code</h3>
+<h3 id="_contributing_to_the_libki_source_code">7.1. Contributing to the Libki source code</h3>
 <div class="sect3">
-<h4 id="_submitting_bug_fixes_and_features">6.1.1. Submitting bug fixes and features</h4>
+<h4 id="_submitting_bug_fixes_and_features">7.1.1. Submitting bug fixes and features</h4>
 <div class="sect4">
 <h5 id="_formatting_patches">Formatting Patches</h5>
 <div class="ulist">
@@ -1522,7 +1624,7 @@ printers:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_coding_guidelines">6.1.2. Coding Guidelines</h4>
+<h4 id="_coding_guidelines">7.1.2. Coding Guidelines</h4>
 <div class="sect4">
 <h5 id="_server_coding_guidelines">Server coding guidelines</h5>
 <div class="ulist">
@@ -1543,7 +1645,7 @@ printers:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_contributing_to_the_manual">6.2. Contributing to the Manual</h3>
+<h3 id="_contributing_to_the_manual">7.2. Contributing to the Manual</h3>
 <div class="paragraph">
 <p>Suggestions for edits can be sent to the Libki Documentation Team as a merge request via GitHub.</p>
 </div>
@@ -1557,10 +1659,10 @@ printers:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credits">7. Credits</h2>
+<h2 id="_credits">8. Credits</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_authors">7.1. Authors</h3>
+<h3 id="_authors">8.1. Authors</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1584,7 +1686,7 @@ printers:
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-07-06 17:53:20 UTC
+Last updated 2018-07-10 11:45:24 UTC
 </div>
 </div>
 </body>
