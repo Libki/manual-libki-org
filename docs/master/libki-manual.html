@@ -1435,6 +1435,61 @@ Make sure the URL beings with http:// or https:// as necessary.
 <div class="paragraph">
 <p>Print management in Libki is powered by Google Cloud Print. To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
 </div>
+<div class="sect3">
+<h4 id="_finding_your_cloud_printer_id">3.4.1. Finding your cloud printer id:</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up the printer for Google Cloud Print</p>
+</li>
+<li>
+<p>Browse to <a href="https://www.google.com/cloudprint/simulate.html" class="bare">https://www.google.com/cloudprint/simulate.html</a></p>
+</li>
+<li>
+<p>Use the Printer Search API to search for you printers, or browse to <a href="https://www.google.com/cloudprint/search" class="bare">https://www.google.com/cloudprint/search</a> directly</p>
+</li>
+<li>
+<p>Locate your printer in the results, find the "id" field, it should look something like <code>id: "ed4ddb78-dc03-8574-8687-be3995df8cd4"</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getting_your_client_id_and_client_secret">3.4.2. Getting your client id and client secret</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get oAuth2 Credentials</p>
+</li>
+<li>
+<p>Browse to <a href="https://console.developers.google.com/" class="bare">https://console.developers.google.com/</a></p>
+</li>
+<li>
+<p>Enable Cloud API</p>
+</li>
+<li>
+<p>Create credentials for OAuth 2 type=“Other”</p>
+</li>
+<li>
+<p>Save the ID and secret for use in the Libki print configuration</p>
+</li>
+</ol>
+</div>
+<div id="img-google-developer-console" class="imageblock">
+<div class="content">
+<img src="images/google-developer-console.png" alt="Google Developer Console">
+</div>
+<div class="title">Figure 1. Google Developer Console</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_setting_up_your_print_management_configuration">3.4.3. Setting up your print management configuration</h4>
+<div class="paragraph">
+<p>You can use the configuration below as a template, simply replace the <code>client_id</code>, <code>client_secret</code>, and <code>google_cloud_id</code> field values with your own.</p>
+</div>
+<div class="paragraph">
+<p>Note the example has two instances of the same printer installed, one for printing in color, and one for monochrome.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">google_cloud_print:
@@ -1448,7 +1503,7 @@ printers:
     name: color
     ticket:
       color:
-        type: STANDARD_MONOCHROME
+        type: STANDARD_COLOR
 
   monochrome:
     type: google_cloud_print
@@ -1459,30 +1514,31 @@ printers:
         type: STANDARD_MONOCHROME</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To get your client id and client secret:
-. Get oAuth2 Credentials
-.. Browse to <a href="https://console.developers.google.com/" class="bare">https://console.developers.google.com/</a>
-.. Enable Cloud API
-.. Create credentials for OAuth 2 type=“Other”
-.. Save the ID and secret for use in the Libki print configuration</p>
 </div>
-<div class="paragraph">
-<p>To authorize your server to use the Cloud Print API:
-. Run <code>script/administration/enable_google_cloud_print.pl</code>
-. Open the URL given in a web browser
-. Authorize your account
-. Copy and paste the code you are given back into the script
-. Hit enter
-. You should recieve the message <code>Session stored.</code> if everything was successful.</p>
+<div class="sect3">
+<h4 id="_authorizing_your_server_to_use_the_cloud_print_api">3.4.4. Authorizing your server to use the Cloud Print API</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run <code>script/administration/enable_google_cloud_print.pl</code></p>
+</li>
+<li>
+<p>Open the URL given in a web browser</p>
+</li>
+<li>
+<p>Authorize your account</p>
+</li>
+<li>
+<p>Copy and paste the code you are given back into the script</p>
+</li>
+<li>
+<p>Hit enter</p>
+</li>
+<li>
+<p>You should recieve the message <code>Session stored.</code> if everything was successful.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>To get your printer cloud id:
-. Set up the printer for Google Cloud Print
-. Browse to <a href="https://www.google.com/cloudprint/simulate.html" class="bare">https://www.google.com/cloudprint/simulate.html</a>
-. Use the Printer Search API to search for you printers
-.. Or browse to <a href="https://www.google.com/cloudprint/search" class="bare">https://www.google.com/cloudprint/search</a> directly
-. Locate your printer in the results, find the "id" field, it should look something like <code>id: "ed4ddb78-dc03-8574-8687-be3995df8cd4"</code></p>
 </div>
 </div>
 </div>
@@ -1711,7 +1767,7 @@ printers:
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-07-19 11:59:32 UTC
+Last updated 2018-07-19 12:25:28 UTC
 </div>
 </div>
 </body>
