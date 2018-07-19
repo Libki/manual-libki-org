@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-07-10</span>
+<span id="revdate">2018-07-19</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1459,6 +1459,31 @@ printers:
         type: STANDARD_MONOCHROME</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To get your client id and client secret:
+. Get oAuth2 Credentials
+.. Browse to <a href="https://console.developers.google.com/" class="bare">https://console.developers.google.com/</a>
+.. Enable Cloud API
+.. Create credentials for OAuth 2 type=“Other”
+.. Save the ID and secret for use in the Libki print configuration</p>
+</div>
+<div class="paragraph">
+<p>To authorize your server to use the Cloud Print API:
+. Run <code>script/administration/enable_google_cloud_print.pl</code>
+. Open the URL given in a web browser
+. Authorize your account
+. Copy and paste the code you are given back into the script
+. Hit enter
+. You should recieve the message <code>Session stored.</code> if everything was successful.</p>
+</div>
+<div class="paragraph">
+<p>To get your printer cloud id:
+. Set up the printer for Google Cloud Print
+. Browse to <a href="https://www.google.com/cloudprint/simulate.html" class="bare">https://www.google.com/cloudprint/simulate.html</a>
+. Use the Printer Search API to search for you printers
+.. Or browse to <a href="https://www.google.com/cloudprint/search" class="bare">https://www.google.com/cloudprint/search</a> directly
+. Locate your printer in the results, find the "id" field, it should look something like <code>id: "ed4ddb78-dc03-8574-8687-be3995df8cd4"</code></p>
+</div>
 </div>
 </div>
 </div>
@@ -1686,7 +1711,7 @@ printers:
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-07-10 11:45:24 UTC
+Last updated 2018-07-19 11:59:32 UTC
 </div>
 </div>
 </body>
