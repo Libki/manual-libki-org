@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-07-23</span>
+<span id="revdate">2018-08-06</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -472,7 +472,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_statistics_history">4.1. Statistics &amp; History</a></li>
 </ul>
 </li>
-<li><a href="#_desktop_client">5. Desktop client</a></li>
+<li><a href="#_desktop_client">5. Desktop client</a>
+<ul class="sectlevel2">
+<li><a href="#_downloading_the_client">5.1. Downloading the client</a></li>
+<li><a href="#_the_client_setup_wizard">5.2. The client setup wizard</a></li>
+<li><a href="#_client_ini_configuration_options">5.3. Client INI configuration options</a></li>
+</ul>
+</li>
 <li><a href="#_backing_up_and_restoring_your_libki_database">6. Backing up and restoring your Libki database</a>
 <ul class="sectlevel2">
 <li><a href="#_backing_up">6.1. Backing up</a></li>
@@ -1584,7 +1590,134 @@ A custom PDF print driver for Libki is in development, but not yet available.</p
 <div class="sect1">
 <h2 id="_desktop_client">5. Desktop client</h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="_downloading_the_client">5.1. Downloading the client</h3>
+<div class="paragraph">
+<p>The Windows wizard installer for the Libki client can be downloaded from <a href="https://github.com/Libki/libki-client/releases" class="bare">https://github.com/Libki/libki-client/releases</a></p>
+</div>
+<div class="paragraph">
+<p>Make sure to download the client version that matches your Libki server version.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_client_setup_wizard">5.2. The client setup wizard</h3>
+<div class="paragraph">
+<p>After downloading the client, run it and you will be presented with the installer wizard.
+Here you will be asked a series of questions about how you would like your client to be configured.</p>
+</div>
+<div class="sect3">
+<h4 id="_scheme">5.2.1. Scheme</h4>
+<div class="paragraph">
+<p>Set this field to <code>https</code> if you have set up your Libki server behind an SSL-enabled proxy,
+set it to <code>http</code> otherwise.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_host">5.2.2. Host</h4>
+<div class="paragraph">
+<p>Set this to the ip address or FQDN for your Libki server.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_port">5.2.3. Port</h4>
+<div class="paragraph">
+<p>Set this field to the external port your Libki server is listening on.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_location">5.2.4. Location</h4>
+<div class="paragraph">
+<p>Set this field to the location you wish to label this client as being at.
+This is an arbitrary text field. If you are setting multiple clients to have the same location,
+make sure that you use the exact same spelling for all the clients.</p>
+</div>
+<div class="paragraph">
+<p>For example, you may set the location to <code>Main Floor</code> or <code>Children&#8217;s Room</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_run_only_for_this_user">5.2.5. Run only for this user</h4>
+<div class="paragraph">
+<p>If you enter a Windows account username in this field, the Libki client will only
+launch when that Windows user is logged in to.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_run_for_all_users_but_this_one">5.2.6. Run for all users but this one</h4>
+<div class="paragraph">
+<p>This is the inverse of <code>Run only for this user</code>. If you set a Windows account username
+in this field, the client will not run for that user, but will for all other users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_client_name">5.2.7. Client name</h4>
+<div class="paragraph">
+<p>Here you can name this client node, each client should have a unique username otherwise
+you will get unexpected behavior.</p>
+</div>
+<div class="paragraph">
+<p>If you leave this field blank, Libki will user the client computers hostname as the Libki
+client&#8217;s name.</p>
+</div>
+<div class="paragraph">
+<p>If you set the value of this field to <code>OS_USERNAME</code>, the logged in Windows account username
+will be used as the client&#8217;s name.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logout_action">5.2.8. Logout action</h4>
+<div class="paragraph">
+<p>This section will let you choose what happens when the Libki client logs out,
+either because the patron&#8217;s time has run out, or the patron chooses to log out early.</p>
+</div>
+<div class="sect4">
+<h5 id="_reboot">Reboot</h5>
+<div class="paragraph">
+<p>This option will trigger a full reboot of the client PC.
+This is useful when combined with the software <a href="http://www.faronics.com/products/deep-freeze/enterprise">Deep Freeze</a>,
+which resets the state of a computer each time it is rebooted.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_log_out_of_operating_system">Log out of operating system</h5>
+<div class="paragraph">
+<p>This option will trigger a logout of the Windows account that the client is currently logged in as.
+This is useful when combined with the software <a href="http://www.fortresgrand.com/products/cls/cls.htm">Clean Slate</a>,
+which resets the state of a computer each time that the Windows account is logged out.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nothing">Nothing</h5>
+<div class="paragraph">
+<p>This option leaves the host OS in the state it is currently in, and merely redisplays the login screen.
+This option is not recommended for production use. Any applications the user had open at the time the client
+was logged off of will still be open.
+This option is useful for testing and debugging.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_client_disable_password">5.2.9. Client disable password</h4>
+<div class="paragraph">
+<p>Here you may enter a 'back door' password.
+At any time, if this password is entered into the Libki login screen with an empty username, it will cause the Libki client to close.
+This is useful in the event that a client loses connectivity with the server and is unable to verify logins.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installation_location">5.2.10. Installation location</h4>
+<div class="paragraph">
+<p>This is the path to which the Libki client will be installed.
+It is recommended to use the default installation path unless you have a specific reason to do otherwise.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_client_ini_configuration_options">5.3. Client INI configuration options</h3>
+<div class="paragraph">
+<p>The Libki client may be customized further with options set in the configuration INI file that are not revealed in the installer wizard.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1796,7 +1929,7 @@ A custom PDF print driver for Libki is in development, but not yet available.</p
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-07-23 18:54:32 UTC
+Last updated 2018-08-06 10:45:14 UTC
 </div>
 </div>
 </body>
