@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-09-07</span>
+<span id="revdate">2018-09-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -456,7 +456,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_automatic_installation">2.1. Automatic Installation</a></li>
 <li><a href="#_manual_installation">2.2. Manual installation</a></li>
-<li><a href="#_optional_configuring_libki_to_authenticate_against_a_sip_server">2.3. OPTIONAL: Configuring Libki to authenticate against a SIP server</a></li>
 </ul>
 </li>
 <li><a href="#_configuration">3. Configuration</a>
@@ -889,101 +888,8 @@ cat installer/cron/rootcron | crontab -</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_optional_configuring_libki_to_authenticate_against_a_sip_server">2.3. OPTIONAL: Configuring Libki to authenticate against a SIP server</h3>
-<div class="paragraph">
-<p>To enable SIP authentication, you will need to edit your libki_local.conf and add a section like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>&lt;SIP&gt;
-    enable 1
-    host ils.mylibrary.org
-    port 6001
-    location LIB
-    username libki_sipuser
-    password PassW0rd
-    terminator CR
-    require_sip_auth 0
-    enable_split_messages 0
-    fee_limit 5.00 <i class="conum" data-value="1"></i><b>(1)</b>
-    deny_on charge_privileges_denied <i class="conum" data-value="2"></i><b>(2)</b>
-    deny_on recall_privileges_denied <i class="conum" data-value="3"></i><b>(3)</b>
-    deny_on excessive_outstanding_fines <i class="conum" data-value="4"></i><b>(4)</b>
-    deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="5"></i><b>(5)</b>
-&lt;/SIP&gt;</pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>You can set SIP2 patron status flags which will deny patrons the ability to log in</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>You can set as many or as few as you want. Delete these if you don&#8217;t want to deny patrons.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The full listing is defined in the SIP2 protocol specification</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>You can require arbitrary SIP fields to have a value of Y for patrons to be allowed to log in. The format of the setting is <em>&lt;Field&gt;:&lt;Message&gt;</em>.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The SIP section requires the following parameters:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>enable: Set to 1 to enable SIP auth, 0 to disable it.</p>
-</li>
-<li>
-<p>host: The SIP server&#8217;s IP or FQDN.</p>
-</li>
-<li>
-<p>port: The port that SIP server listens on.</p>
-</li>
-<li>
-<p>location: The SIP location code that matches the sip login.</p>
-</li>
-<li>
-<p>username: The username for the SIP account to use for transactions.</p>
-</li>
-<li>
-<p>password: The password for the SIP accouant to use for transactions.</p>
-</li>
-<li>
-<p>terminator: This is either CR or CRLF depending on the SIP server. Default is CR</p>
-</li>
-<li>
-<p>require_sip_auth: Does this SIP server require a message 93 login before it can be used? If so this should be set to 1 and the username/password fields should be populated. This should be set to 1 for Koha.</p>
-</li>
-<li>
-<p>enable_split_message: IF thie server supports split messages you can enable this. This should be set to 0 for Koha.</p>
-</li>
-<li>
-<p>fee_limit: As notated, this can be a set number or a SIP field to check. If the fee limit is exceeded, the user login will be denied.</p>
-</li>
-<li>
-<p>deny_on: This can be repeated to deny logins based on the patron information flags detailed in the SIP2 protocol specification.</p>
-</li>
-<li>
-<p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".</p>
-</li>
-</ul>
-</div>
 <div class="sect3">
-<h4 id="_troubleshooting">2.3.1. Troubleshooting</h4>
+<h4 id="_troubleshooting">2.2.12. Troubleshooting</h4>
 <div class="paragraph">
 <p>You can now test to see if your server is running by using the cli web browser 'links'. If you don&#8217;t have links installed you can installed it via the command</p>
 </div>
@@ -1446,9 +1352,119 @@ Make sure the URL beings with http:// or https:// as necessary.
 <div class="paragraph">
 <p>Single Sign-on can with an ILS can be achieved via SIP2. Settings for the ILS SIP2 server can be stored in the <em>libki\_local.conf</em> file or the <strong>SIP configuration</strong> setting.</p>
 </div>
+<div class="paragraph">
+<p>To enable SIP authentication, you will need to edit your libki_local.conf and add a section like this:</p>
 </div>
-<div class="sect3">
-<h4 id="_ldap">3.3.2. LDAP</h4>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;SIP&gt;
+    enable 1
+    host ils.mylibrary.org
+    port 6001
+    location LIB
+    username libki_sipuser
+    password PassW0rd
+    terminator CR
+    require_sip_auth 0
+    enable_split_messages 0
+    fee_limit 5.00 <i class="conum" data-value="1"></i><b>(1)</b>
+    deny_on charge_privileges_denied <i class="conum" data-value="2"></i><b>(2)</b>
+    deny_on recall_privileges_denied <i class="conum" data-value="3"></i><b>(3)</b>
+    deny_on excessive_outstanding_fines <i class="conum" data-value="4"></i><b>(4)</b>
+    deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="5"></i><b>(5)</b>
+&lt;/SIP&gt;</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can set SIP2 patron status flags which will deny patrons the ability to log in</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>You can set as many or as few as you want. Delete these if you don&#8217;t want to deny patrons.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The full listing is defined in the SIP2 protocol specification</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>You can require arbitrary SIP fields to have a value of Y for patrons to be allowed to log in. The format of the setting is <em>&lt;Field&gt;:&lt;Message&gt;</em>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An equivilent configuration set via the system settings would like like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">enable: 1
+host: ils.mylibrary.org
+port: 6001
+location: LIB
+username: libki_sipuser
+password: PassW0rd
+terminator: CR
+require_sip_auth: 0
+enable_split_messages: 0
+fee_limit: 5.00
+deny_on:
+  - charge_privileges_denied
+  - recall_privileges_denied
+  - excessive_outstanding_fines
+deny_on_field: "AB:This is the reason we are denying you"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The SIP section requires the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>enable: Set to 1 to enable SIP auth, 0 to disable it.</p>
+</li>
+<li>
+<p>host: The SIP server&#8217;s IP or FQDN.</p>
+</li>
+<li>
+<p>port: The port that SIP server listens on.</p>
+</li>
+<li>
+<p>location: The SIP location code that matches the sip login.</p>
+</li>
+<li>
+<p>username: The username for the SIP account to use for transactions.</p>
+</li>
+<li>
+<p>password: The password for the SIP accouant to use for transactions.</p>
+</li>
+<li>
+<p>terminator: This is either CR or CRLF depending on the SIP server. Default is CR</p>
+</li>
+<li>
+<p>require_sip_auth: Does this SIP server require a message 93 login before it can be used? If so this should be set to 1 and the username/password fields should be populated. This should be set to 1 for Koha.</p>
+</li>
+<li>
+<p>enable_split_message: IF thie server supports split messages you can enable this. This should be set to 0 for Koha.</p>
+</li>
+<li>
+<p>fee_limit: As notated, this can be a set number or a SIP field to check. If the fee limit is exceeded, the user login will be denied.</p>
+</li>
+<li>
+<p>deny_on: This can be repeated to deny logins based on the patron information flags detailed in the SIP2 protocol specification.</p>
+</li>
+<li>
+<p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".
+==== LDAP</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Single Sign-on with other systems can be achieved via LDAP. Settings for LDAP server are currently stored in the <em>libki\_local.conf</em> only, though setting support is expected soon.</p>
 </div>
@@ -2052,7 +2068,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-09-07 10:54:48 UTC
+Last updated 2018-09-27 18:53:15 UTC
 </div>
 </div>
 </body>
