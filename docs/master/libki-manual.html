@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2018-09-27</span>
+<span id="revdate">2018-10-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1367,11 +1367,12 @@ Make sure the URL beings with http:// or https:// as necessary.
     terminator CR
     require_sip_auth 0
     enable_split_messages 0
-    fee_limit 5.00 <i class="conum" data-value="1"></i><b>(1)</b>
-    deny_on charge_privileges_denied <i class="conum" data-value="2"></i><b>(2)</b>
-    deny_on recall_privileges_denied <i class="conum" data-value="3"></i><b>(3)</b>
-    deny_on excessive_outstanding_fines <i class="conum" data-value="4"></i><b>(4)</b>
-    deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="5"></i><b>(5)</b>
+    no_password_check 0 <i class="conum" data-value="1"></i><b>(1)</b>
+    fee_limit 5.00 <i class="conum" data-value="2"></i><b>(2)</b>
+    deny_on charge_privileges_denied <i class="conum" data-value="3"></i><b>(3)</b>
+    deny_on recall_privileges_denied <i class="conum" data-value="4"></i><b>(4)</b>
+    deny_on excessive_outstanding_fines <i class="conum" data-value="5"></i><b>(5)</b>
+    deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="6"></i><b>(6)</b>
 &lt;/SIP&gt;</pre>
 </div>
 </div>
@@ -1379,22 +1380,26 @@ Make sure the URL beings with http:// or https:// as necessary.
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit</td>
+<td>If enabled, Libki won&#8217;t validate the password given against the SIP server, any password will work</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>You can set SIP2 patron status flags which will deny patrons the ability to log in</td>
+<td>Can be either a fee amount, or a SIP2 field that defines the fee limit ( e.g. CC ), delete for no fee limit</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>You can set as many or as few as you want. Delete these if you don&#8217;t want to deny patrons.</td>
+<td>You can set SIP2 patron status flags which will deny patrons the ability to log in</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The full listing is defined in the SIP2 protocol specification</td>
+<td>You can set as many or as few as you want. Delete these if you don&#8217;t want to deny patrons.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The full listing is defined in the SIP2 protocol specification</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>You can require arbitrary SIP fields to have a value of Y for patrons to be allowed to log in. The format of the setting is <em>&lt;Field&gt;:&lt;Message&gt;</em>.</td>
 </tr>
 </table>
@@ -2068,7 +2073,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2018-09-27 19:47:48 UTC
+Last updated 2018-10-24 14:44:29 UTC
 </div>
 </div>
 </body>
