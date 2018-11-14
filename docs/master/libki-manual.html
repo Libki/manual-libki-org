@@ -1022,6 +1022,27 @@ The value of <strong>Client registration update delay limit</strong> should be a
 <div class="sect3">
 <h4 id="_data_retention">3.1.2. Data retention</h4>
 <div class="sect4">
+<h5 id="_history_anonymization">History anonymization</h5>
+<div class="paragraph">
+<p>This setting controls how long user and client data is retained in an un-anonymized format. If this setting is left empty, the data will be kept indefinitely.</p>
+</div>
+<div class="paragraph">
+<p>When anonymized, a particular user will be given a new random id on a per-day basis. In this way, statistics will still be able to track usage on a per-user basis per day, but will be unable to track per-user usage over any longer time period.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>History anonymization</strong> should a whole number.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_history_retention">History retention</h5>
 <div class="paragraph">
 <p>This setting controls how long user and client data is retained for the purpose of generating statistics and checking usage history, in days. If this setting is left empty, the data will be kept indefinitely.</p>
@@ -2079,7 +2100,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version {libki-version}<br>
-Last updated 2018-11-14 20:26:47 UTC
+Last updated 2018-11-14 20:30:27 UTC
 </div>
 </div>
 </body>
