@@ -1913,6 +1913,28 @@ age_limit="gt18"</code></pre>
 <p>It is possible to make a client unusable by anyone ( e.g. "gt18,lt17" ) so be careful with this configuration.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_automatic_logout_due_to_inactivity">5.3.4. Automatic logout due to inactivity</h4>
+<div class="paragraph">
+<p>It is possible to configure the Libki client to log a patron out if no mouse movement has been detected in a given number of minutes. Additionaly, the user can be first warned after a different number of minutes. Both of these configurations exist as system settings on the Libki server.</p>
+</div>
+<div class="paragraph">
+<p>It is also possibly to specifiy these configurations on a per-client basis, in the Libki client INI file. If these settings exist in the client INI file, they will override the settings from the server. In this way, the server settings can act as a default, with particular clients overriding those server provided settings.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[node]
+inactivityLogout=5
+inactivityWarning=3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, Libki will display an inactivity warning after 3 minutes with no mouse movement. The client will then log the user out after another 2 minutes of inactivity. If no warning is wanted, simply set inactivityWarning to a greater number than inactivityLogout.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2134,7 +2156,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version {libki-version}<br>
-Last updated 2019-01-18 12:04:45 UTC
+Last updated 2019-01-18 12:13:06 UTC
 </div>
 </div>
 </body>
