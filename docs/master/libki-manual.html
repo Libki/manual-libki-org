@@ -940,8 +940,8 @@ cat installer/cron/rootcron | crontab -</code></pre>
 <div class="sect2">
 <h3 id="_docker">2.3. Docker</h3>
 <div class="paragraph">
-<p>The official Libki Server Docker image needs to be connected to a database server, it does not contain a mysql instance within it.
-Using a MySQL or MariaDB container on the same Docker network is considered good practice.</p>
+<p>The official Libki Server Docker image needs to be connected to a database server, it does not contain a MySQL instance within it.
+Using a MySQL or a MariaDB container on the same Docker network is considered good practice.</p>
 </div>
 <div class="paragraph">
 <p>The Libki Server image is available on <a href="https://hub.docker.com/r/libki/libki-server">Docker Hub</a>.</p>
@@ -972,6 +972,21 @@ LIBKI_TZ=America/Denver <i class="conum" data-value="2"></i><b>(2)</b></pre>
 <td>Find your timezome in the documentation <a href="https://metacpan.org/pod/DateTime::TimeZone::Catalog">here</a>.</td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_cronjobs">2.3.1. Cronjobs</h4>
+<div class="paragraph">
+<p>The Libki cronjobs are not set to run inside the Docker container. Instead, it the cronjobs should be set up on the host machine.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to the root user&#8217;s crontab or to a file in <code>/etc/cron.d/</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>* * * * * root docker exec &lt;container-name&gt; /app/script/cronjobs/libki.pl
+0 0 * * * root docker exec &lt;container-name&gt; /app/script/cronjobs/libki_nightly.pl</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2207,7 +2222,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version {libki-version}<br>
-Last updated 2019-01-22 12:01:31 UTC
+Last updated 2019-01-22 12:21:48 UTC
 </div>
 </div>
 </body>
