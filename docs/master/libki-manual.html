@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version {libki-version},</span>
-<span id="revdate">2019-01-18</span>
+<span id="revdate">2019-01-22</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -786,7 +786,21 @@ nano libki_local.conf</code></pre>
 <div class="sect3">
 <h4 id="_installing_cron_jobs">2.2.8. Installing cron jobs</h4>
 <div class="paragraph">
-<p>Part of what makes the Libki server tick is scheduled jobs called cron jobs. <code>./script/cronjobs/libki.pl</code> is the timer and <code>./script/cronjobs/libki_nightly.pl</code> is the cleaner that resets everything overnight.</p>
+<p>Part of what makes the Libki server tick are scheduled jobs called cron jobs.
+Libki has two cronjobs. The first one <code>script/cronjobs/libki.pl</code> runs each and every minute and performs tasks such as decrementing time for logged in users and logging out users whose time has run out.
+The second cronjob <code>script/cronjobs/libki_nightly.pl</code> performs nightly tasks such as resetting everyones allotment of minutes and deleting data that is past the retention dates specified in the server settings.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If a cronjob doesn&#8217;t seem to be working, run it manually and look for errors. A common problem is that a script is unable to write to a log file due to incorrect permissions.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>There are two pre-written cron files, just to import. The first one is for the libki user and the second one for root.</p>
@@ -2189,7 +2203,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version {libki-version}<br>
-Last updated 2019-01-18 12:27:46 UTC
+Last updated 2019-01-22 11:57:37 UTC
 </div>
 </div>
 </body>
