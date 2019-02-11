@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2019-02-01</span>
+<span id="revdate">2019-02-11</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2001,6 +2001,36 @@ inactivityWarning=3</code></pre>
 <p>In the above example, Libki will display an inactivity warning after 3 minutes with no mouse movement. The client will then log the user out after another 2 minutes of inactivity. If no warning is wanted, simply set inactivityWarning to a greater number than inactivityLogout.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_run_external_program_on_login">5.3.5. Run external program on login</h4>
+<div class="paragraph">
+<p>It is possible to configure the Libki client to launch another program when a user successfully logs into Libki.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[node]
+run_on_login="C:\\Program Files\\Internet Explorer\\iexplore.exe"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, Libki will launch Internet Explorer after the patron has logged in successfully.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use single forward slashes instead of the double backslashes ( e.g. <code>C:/Program Files/Internet Explorer/iexplore.exe</code> )
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2222,7 +2252,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-02-01 13:27:47 UTC
+Last updated 2019-02-11 19:20:37 UTC
 </div>
 </div>
 </body>
