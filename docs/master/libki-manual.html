@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2019-02-11</span>
+<span id="revdate">2019-03-06</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1446,6 +1446,32 @@ The value of <strong>Passes to create per batch</strong> should be a whole numbe
 <p>This setting works the same as <strong>Username label</strong> but for the generated password instead of the username.</p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_guest_pass_css">Guest pass CSS</h5>
+<div class="paragraph">
+<p>This setting allows the batch guest passes to be styled with CSS.
+The default value for this setting is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">body { /* default body style emulates a pre tag */
+    font-family: monospace;
+    white-space: pre;
+    display: block;
+    unicode-bidi: embed;
+}
+.guest-pass { /* each username and password is in a guest-pass span */
+    /* page-break-before: always; */ /* This will cause each pass to have a page break, good for use with receipt printers */
+}
+.guest-pass-username {} /* span containing the username label and the username itself */
+.guest-pass-username-label {} /* span containing the username label */
+.guest-pass-username-content {} /* span containing the username itself */
+.guest-pass-password {} /* span containing the password label and the password itself */
+.guest-pass-password-label {} /* span containing the password label */
+.guest-pass-password-content {} /* span containing the password itself */</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_ils_integration">3.1.7. ILS integration</h4>
@@ -2252,7 +2278,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-02-11 19:20:37 UTC
+Last updated 2019-03-06 11:36:47 UTC
 </div>
 </div>
 </body>
