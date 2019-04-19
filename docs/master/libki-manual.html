@@ -1727,17 +1727,29 @@ The value of <strong>Reservation timeout</strong> should be a whole number.
 If a criteria is missing in a rule, then it is not used as part if the matching process.</p>
 </div>
 <div class="paragraph">
-<p>For example, let&#8217;s say we are attempting to log in as a patron with the category MyCategory1, and a client with the location MyLocation2.
-The first rule matches category, but not location, so it is skipped.
-The second rule only checks location, which is not a match, so it is skipped.
-The third rule only checks category, which matches, so it is used!
-The last rule has no critea, so it matches on <strong>everything</strong></p>
+<p>For example, let&#8217;s say we are attempting to log in as a patron with the category <code>MyCategory1</code>, and a client with the location <code>MyLocation2</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first rule matches category, but not location, so it is skipped.</p>
+</li>
+<li>
+<p>The second rule only checks location, which is not a match, so it is skipped.</p>
+</li>
+<li>
+<p>The third rule only checks category, which matches, so it is used!</p>
+</li>
+<li>
+<p>The last rule has no critea, so it matches on <strong>everything</strong></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>If there is no catch-all rule like this, Libki will fall back to the origin default time allowance settings</p>
+<p>If there is no catch-all rule like this, Libki will fall back to the default time allowance settings from the <code>Time settings</code> section.</p>
 </div>
 <div class="sect5">
-<h6 id="_even_if_a_rule_should_match_it_will_be_skipped_if_it_doesnt_contain_the_subrule_we_are_looking_for">Even if a rule should match, it will be skipped if it doesn&#8217;t contain the 'subrule' we are looking for.</h6>
+<h6 id="_even_if_a_rule_should_match_it_will_be_skipped_if_it_doesnt_contain_the_subrule_we_are_looking_for">Even if a rule should match, it will be skipped if it doesn&#8217;t contain the 'subrule' we are looking for</h6>
 <div class="paragraph">
 <p>For example, take the following:</p>
 </div>
@@ -1755,16 +1767,27 @@ The last rule has no critea, so it matches on <strong>everything</strong></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Assume a guest is logging in to a MyLocation1 client.
-The first rule will be skipped because guest_session is not defined in this rule.
-The second rule will be used because it matches all and <strong>does</strong> have guest_session defined.</p>
+<p>Assume a guest is logging in to a <code>MyLocation1</code> client.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first rule will be skipped because guest_session is not defined in this rule.</p>
+</li>
+<li>
+<p>The second rule will be used because it matches all and <strong>does</strong> have guest_session defined.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_rules_can_specify_multiple_values_for_a_given_criteria">Rules can specify multiple values for a given criteria</h6>
 <div class="paragraph">
-<p>For example:
--
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">-
   criteria:
     user_category:
       - MyCategory1
@@ -1774,19 +1797,21 @@ The second rule will be used because it matches all and <strong>does</strong> ha
     session: 25
     daily: 50
     guest_session: 20
-    guest_daily: 45</p>
+    guest_daily: 45</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>would apply to any user of category MyCategory1 <strong>or</strong> MyCategory2 logging into a client at locatin MyLocationA.</p>
+<p>The above example would apply to any user of category <code>MyCategory1</code> <strong>or</strong> <code>MyCategory2</code> logging into a client at location <code>MyLocationA</code>.</p>
 </div>
 <div class="paragraph">
-<p>This is, this rule will apply to all the value in the list for that criteria.</p>
+<p>That is, this rule will apply to all the values in the list for that criteria.</p>
 </div>
 <div class="paragraph">
-<p>Another way to think of it is that all creteria are AND&#8217;ed, and all the value for a criteria are OR&#8217;ed.</p>
+<p>Another way to think of it is that all criteria are AND&#8217;ed, and all the values for a criteria are OR&#8217;ed.</p>
 </div>
-<div class="paragraph">
-<p>-
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">-
   criteria:
     user_category:
       - Cat1
@@ -1798,7 +1823,8 @@ The second rule will be used because it matches all and <strong>does</strong> ha
     session: 25
     daily: 50
     guest_session: 20
-    guest_daily: 45</p>
+    guest_daily: 45</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Would be expressed in SQL like:
@@ -2481,7 +2507,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-04-19 12:24:40 UTC
+Last updated 2019-04-19 12:33:31 UTC
 </div>
 </div>
 </body>
