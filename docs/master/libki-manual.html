@@ -468,7 +468,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_settings">3.1. Settings</a></li>
 <li><a href="#_closing_hours">3.2. Closing hours</a></li>
-<li><a href="#_print_management">3.3. Print management</a></li>
+<li><a href="#_print_management_2">3.3. Print management</a></li>
 </ul>
 </li>
 <li><a href="#_administration">4. Administration</a>
@@ -1077,14 +1077,14 @@ The value of <strong>Default guest time allowance per day</strong> should be a w
 </div>
 </div>
 <div class="sect3">
-<h4 id="_data_retention">3.1.2. Data retention</h4>
-<div class="sect4">
-<h5 id="_history_anonymization">History anonymization</h5>
+<h4 id="_automatic_time_extension">3.1.2. Automatic time extension</h4>
 <div class="paragraph">
-<p>This setting controls how long user and client data is retained in an un-anonymized format. If this setting is left empty, the data will be kept indefinitely.</p>
+<p>Libki has an automatic time extension system that allows users to remain logged into a client computer beyond the pre-determined number of minutes per session a user is allotted.</p>
 </div>
+<div class="sect4">
+<h5 id="_extension_length">Extension length</h5>
 <div class="paragraph">
-<p>When anonymized, a particular user will be given a new random id on a per-day basis. In this way, statistics will still be able to track usage on a per-user basis per day, but will be unable to track per-user usage over any longer time period.</p>
+<p>The amount of time to automatically increase a user&#8217;s session time by \( in minutes \).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1093,16 +1093,16 @@ The value of <strong>Default guest time allowance per day</strong> should be a w
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The value of <strong>History anonymization</strong> should a whole number.
+The value of <strong>Extension length</strong> should be a whole number.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_history_retention">History retention</h5>
+<h5 id="_extend_time_at">Extend time at</h5>
 <div class="paragraph">
-<p>This setting controls how long user and client data is retained for the purpose of generating statistics and checking usage history, in days. If this setting is left empty, the data will be kept indefinitely.</p>
+<p>This setting controls at what point in time an extension length is triggered. A session will be extended when the user&#8217;s session time drops below this number, in minutes.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1111,31 +1111,70 @@ The value of <strong>History anonymization</strong> should a whole number.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The value of <strong>History retention</strong> should a whole number.
+The value of <strong>Extend time at</strong> should be a whole number.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_inactive_user_retention">Inactive user retention</h5>
+<h5 id="_extend_time_unless">Extend time unless</h5>
 <div class="paragraph">
-<p>This setting controls how long a user can be inactive before being automatically deleted, in days. If this setting is left empty, all users will be kept indefinitely.</p>
+<p>This setting determines if a user is eligible for an automatic time extension. It has two options:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The value of <strong>Inactive user retention</strong> should be a whole number.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>User&#8217;s client is reserved</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This choice prevents a time extension in the case that the user&#8217;s client is reserved. Reservations for other client&#8217;s are not taken into account.</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>Any client is reserved</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This choice prevents a time extension in the case that <strong>any</strong> client is currently reserved. If any client is reserved a time extension will not take place, even if the users&#8217;s client is not currently reserved,</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_when_extending_time">When extending time</h5>
 <div class="paragraph">
-<p>This setting should be used to conform to <a href="https://www.eugdpr.org/">GDPR</a> if necessary.</p>
+<p>This setting determines how minutes are added to a patron&#8217;s account when an automatic time extension occurs. It has two options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Take minutes from daily allotment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This options moves minutes from the user&#8217;s daily allotment of minutes to the user&#8217;s session minutes. That means the user can continue using the client computer, but only up to his or her daily allotment of time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Don&#8217;t take minutes from daily allotment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This option adds minutes to a users session "out of thin air". As such, it does not effect how many sessions a user will have per day.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1241,141 +1280,6 @@ The value of <strong>Client registration update delay limit</strong> should be a
 </div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_reservations">3.1.4. Reservations</h4>
-<div class="sect4">
-<h5 id="_reservation_timeout">Reservation timeout</h5>
-<div class="paragraph">
-<p>The amount of time \( in minutes \) that a user has to log into his or her reserved computer. If the user does not log in within the specified time limit, the reserved client will become available again.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The value of <strong>Reservation timeout</strong> should be a whole number.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_display_usernames">Display usernames</h5>
-<div class="paragraph">
-<p>This setting determines if a Libki client that is reserved and waiting will display the username of the person it is waiting for.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_automatic_time_extension">3.1.5. Automatic time extension</h4>
-<div class="paragraph">
-<p>Libki has an automatic time extension system that allows users to remain logged into a client computer beyond the pre-determined number of minutes per session a user is allotted.</p>
-</div>
-<div class="sect4">
-<h5 id="_extension_length">Extension length</h5>
-<div class="paragraph">
-<p>The amount of time to automatically increase a user&#8217;s session time by \( in minutes \).</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The value of <strong>Extension length</strong> should be a whole number.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_extend_time_at">Extend time at</h5>
-<div class="paragraph">
-<p>This setting controls at what point in time an extension length is triggered. A session will be extended when the user&#8217;s session time drops below this number, in minutes.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The value of <strong>Extend time at</strong> should be a whole number.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_extend_time_unless">Extend time unless</h5>
-<div class="paragraph">
-<p>This setting determines if a user is eligible for an automatic time extension. It has two options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>User&#8217;s client is reserved</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This choice prevents a time extension in the case that the user&#8217;s client is reserved. Reservations for other client&#8217;s are not taken into account.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Any client is reserved</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This choice prevents a time extension in the case that <strong>any</strong> client is currently reserved. If any client is reserved a time extension will not take place, even if the users&#8217;s client is not currently reserved,</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_when_extending_time">When extending time</h5>
-<div class="paragraph">
-<p>This setting determines how minutes are added to a patron&#8217;s account when an automatic time extension occurs. It has two options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Take minutes from daily allotment</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This options moves minutes from the user&#8217;s daily allotment of minutes to the user&#8217;s session minutes. That means the user can continue using the client computer, but only up to his or her daily allotment of time.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Don&#8217;t take minutes from daily allotment</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This option adds minutes to a users session "out of thin air". As such, it does not effect how many sessions a user will have per day.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_terms_of_service">Terms of service</h5>
-<div class="paragraph">
-<p>This setting allows a library to add <em>terms of service</em> for use of computers running the Libki client. Simply adding text of your terms of service in the textbox will cause the terms to be displayed to any person logging into a Libki client. If the person chooses <em>yes</em> the login will proceed as usual. If the person chooses <em>no</em> the login screen will be reset.</p>
-</div>
-</div>
 <div class="sect4">
 <h5 id="_client_login_banners">Client login banners</h5>
 <div class="paragraph">
@@ -1398,6 +1302,84 @@ The value of <strong>Extend time at</strong> should be a whole number.
 <h5 id="_height">Height</h5>
 <div class="paragraph">
 <p>This is the same as <strong>Width</strong> for the <strong>Source URL</strong> but for height.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_custom_javascript">3.1.4. Custom Javascript</h4>
+<div class="sect4">
+<h5 id="_administration_interface_javascript">Administration interface JavaScript</h5>
+<div class="paragraph">
+<p>Add custom JavaScript for the admin interface in this text box.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_public_interface_javascript">Public interface JavaScript</h5>
+<div class="paragraph">
+<p>Add custom JavaScript for the public interface in this text box.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_data_retention">3.1.5. Data retention</h4>
+<div class="sect4">
+<h5 id="_history_anonymization">History anonymization</h5>
+<div class="paragraph">
+<p>This setting controls how long user and client data is retained in an un-anonymized format. If this setting is left empty, the data will be kept indefinitely.</p>
+</div>
+<div class="paragraph">
+<p>When anonymized, a particular user will be given a new random id on a per-day basis. In this way, statistics will still be able to track usage on a per-user basis per day, but will be unable to track per-user usage over any longer time period.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>History anonymization</strong> should a whole number.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_history_retention">History retention</h5>
+<div class="paragraph">
+<p>This setting controls how long user and client data is retained for the purpose of generating statistics and checking usage history, in days. If this setting is left empty, the data will be kept indefinitely.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>History retention</strong> should a whole number.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_inactive_user_retention">Inactive user retention</h5>
+<div class="paragraph">
+<p>This setting controls how long a user can be inactive before being automatically deleted, in days. If this setting is left empty, all users will be kept indefinitely.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>Inactive user retention</strong> should be a whole number.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This setting should be used to conform to <a href="https://www.eugdpr.org/">GDPR</a> if necessary.</p>
 </div>
 </div>
 </div>
@@ -1638,6 +1620,210 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_print_management">3.1.8. Print management</h4>
+<div class="sect4">
+<h5 id="_printer_configuration">Printer configuration</h5>
+<div class="paragraph">
+<p>Refer to the main Print Management section for details.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reservations">3.1.9. Reservations</h4>
+<div class="sect4">
+<h5 id="_reservation_timeout">Reservation timeout</h5>
+<div class="paragraph">
+<p>The amount of time \( in minutes \) that a user has to log into his or her reserved computer. If the user does not log in within the specified time limit, the reserved client will become available again.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>Reservation timeout</strong> should be a whole number.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_display_usernames">Display usernames</h5>
+<div class="paragraph">
+<p>This setting determines if a Libki client that is reserved and waiting will display the username of the person it is waiting for.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_terms_of_service">3.1.10. Terms of service</h4>
+<div class="paragraph">
+<p>This setting allows a library to add <em>terms of service</em> for use of computers running the Libki client. Simply adding text of your terms of service in the textbox will cause the terms to be displayed to any person logging into a Libki client. If the person chooses <em>yes</em> the login will proceed as usual. If the person chooses <em>no</em> the login screen will be reset.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_user_settings">3.1.11. User settings</h4>
+<div class="sect4">
+<h5 id="_user_categories">User categories</h5>
+<div class="paragraph">
+<p>Add your list of user categories here as a list in YAML syntax.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">---
+- 'Category 1'
+- 'Category 2'
+- 'Category 3'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If Single Sign-on via SIP integration has been set up, and the SIP configuration for <code>category_field</code> has been set up, values from the SIP field will be automatically added to this list as the appear for the first time via SIP.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_advanced_settings">3.1.12. Advanced settings</h4>
+<div class="sect4">
+<h5 id="_advanced_rules">Advanced rules</h5>
+<div class="paragraph">
+<p>In this section, advanced rules can be set up to deterimine a number of behaviors based on various criteria.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">-
+  criteria:
+    user_category: MyCategory1
+    client_location: MyLocation1
+  rules:
+    session: 25
+    guest_session: 20
+-
+  criteria:
+    client_location: MyLocation1
+  rules:
+    session: 20
+    guest_session: 20
+-
+  criteria:
+    user_category: MyCategory1
+  rules:
+    session: 15
+    guest_session: 20
+-
+  rules:
+    session: 10
+    guest_session: 20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rules should be list from most specific to least specific.
+If a criteria is missing in a rule, then it is not used as part if the matching process.</p>
+</div>
+<div class="paragraph">
+<p>For example, let&#8217;s say we are attempting to log in as a patron with the category MyCategory1, and a client with the location MyLocation2.
+The first rule matches category, but not location, so it is skipped.
+The second rule only checks location, which is not a match, so it is skipped.
+The third rule only checks category, which matches, so it is used!
+The last rule has no critea, so it matches on <strong>everything</strong></p>
+</div>
+<div class="paragraph">
+<p>If there is no catch-all rule like this, Libki will fall back to the origin default time allowance settings</p>
+</div>
+<div class="sect5">
+<h6 id="_even_if_a_rule_should_match_it_will_be_skipped_if_it_doesnt_contain_the_subrule_we_are_looking_for">Even if a rule should match, it will be skipped if it doesn&#8217;t contain the 'subrule' we are looking for.</h6>
+<div class="paragraph">
+<p>For example, take the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">-
+  criteria:
+    client_location: MyLocation1
+  rules:
+    session: 15
+-
+  rules:
+    session: 10
+    guest_session: 20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assume a guest is logging in to a MyLocation1 client.
+The first rule will be skipped because guest_session is not defined in this rule.
+The second rule will be used because it matches all and <strong>does</strong> have guest_session defined.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_rules_can_specify_multiple_values_for_a_given_criteria">Rules can specify multiple values for a given criteria</h6>
+<div class="paragraph">
+<p>For example:
+-
+  criteria:
+    user_category:
+      - MyCategory1
+      - MyCategory2
+    client_location: MyLocationA
+  rules:
+    session: 25
+    daily: 50
+    guest_session: 20
+    guest_daily: 45</p>
+</div>
+<div class="paragraph">
+<p>would apply to any user of category MyCategory1 <strong>or</strong> MyCategory2 logging into a client at locatin MyLocationA.</p>
+</div>
+<div class="paragraph">
+<p>This is, this rule will apply to all the value in the list for that criteria.</p>
+</div>
+<div class="paragraph">
+<p>Another way to think of it is that all creteria are AND&#8217;ed, and all the value for a criteria are OR&#8217;ed.</p>
+</div>
+<div class="paragraph">
+<p>-
+  criteria:
+    user_category:
+      - Cat1
+      - Cat2
+    client_location:
+      - LocA
+      - LocB
+  rules:
+    session: 25
+    daily: 50
+    guest_session: 20
+    guest_daily: 45</p>
+</div>
+<div class="paragraph">
+<p>Would be expressed in SQL like:
+<code>SELECT rule WHERE ( user_category = Cat1 OR user_category = Cat2 ) AND ( client_location = LocA OR client_location = LocB )</code></p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_rule_options">Rule options</h6>
+<div class="paragraph">
+<p>The list of all possible criteria include:
+* client_location
+* client_name
+* user_category</p>
+</div>
+<div class="paragraph">
+<p>The list of all possible rules include:
+* session: The number of minutes per session a registered user is given
+* guest_session: The number of minutes per session a guest user is given
+* daily: The daily allotment of minutes to be given to a registered user for the day
+* guest_daily: The daily allotment of minutes to be given to a guest user for the day
+* no_reservation_required: Even if "Client reservations" is set to "Reservation only", allows a login without a reservation. The value should be '1' to enable.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_closing_hours">3.2. Closing hours</h3>
@@ -1646,7 +1832,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_print_management">3.3. Print management</h3>
+<h3 id="_print_management_2">3.3. Print management</h3>
 <div class="paragraph">
 <p>Print management in Libki is powered by Google Cloud Print. To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
 </div>
@@ -2295,7 +2481,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-04-19 11:48:57 UTC
+Last updated 2019-04-19 12:24:40 UTC
 </div>
 </div>
 </body>
