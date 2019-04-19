@@ -1075,24 +1075,6 @@ The value of <strong>Default guest time allowance per day</strong> should be a w
 </table>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_client_registration_update_delay_limit">Client registration update delay limit</h5>
-<div class="paragraph">
-<p>When a Libki client launches, it periodically connects to the Libki server to register itself. If a client does not re-register itself within this number of minutes, the Libki server will remove it from the list of active clients.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The value of <strong>Client registration update delay limit</strong> should be a whole number.
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_data_retention">3.1.2. Data retention</h4>
@@ -1238,6 +1220,24 @@ These server settings can be overridden on a per-client basis. See the <a href="
 <h6 id="_client_inactivity_logout">Client inactivity logout</h6>
 <div class="paragraph">
 <p>Log user out automatically after this many minutes of inactivity.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_client_registration_update_delay_limit">Client registration update delay limit</h6>
+<div class="paragraph">
+<p>When a Libki client launches, it periodically connects to the Libki server to register itself. If a client does not re-register itself within this number of minutes, the Libki server will remove it from the list of active clients.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The value of <strong>Client registration update delay limit</strong> should be a whole number.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2295,7 +2295,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-04-19 11:44:28 UTC
+Last updated 2019-04-19 11:46:41 UTC
 </div>
 </div>
 </body>
