@@ -444,7 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2019-05-08</span>
+<span id="revdate">2019-05-09</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -492,7 +492,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_contributing">7. Contributing</a>
 <ul class="sectlevel2">
 <li><a href="#_client_server">7.1. Client &amp; server</a></li>
-<li><a href="#_manual">7.2. Manual</a></li>
+<li><a href="#_translation">7.2. Translation</a></li>
+<li><a href="#_manual">7.3. Manual</a></li>
 </ul>
 </li>
 <li><a href="#_credits">8. Credits</a>
@@ -2542,7 +2543,133 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manual">7.2. Manual</h3>
+<h3 id="_translation">7.2. Translation</h3>
+<div class="sect3">
+<h4 id="_translating_the_server">7.2.1. Translating the server</h4>
+<div class="sect4">
+<h5 id="_starting_a_new_translation">Starting a new translation</h5>
+<div class="paragraph">
+<p>The server is translated by a .po file located in lib/Libki/I18N. The .po file is based on a template in the same folder called messages.pot. It is generated dynamically from the server and then combined with a dictionary of our own.</p>
+</div>
+<div class="paragraph">
+<p>Before doing anything else, we need to add the language we&#8217;re translating to the dictionary.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd lib/Libki/I18N
+nano extras.pot</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first part of that dictionary is the important bit. Add your language to the language menu. Follow the same syntax the other languages use and place it alphabetically. Here I&#8217;m adding Danish, so that would be on top. A complete list of language codes can be found <a href="https://developer.chrome.com/webstore/i18n">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Language menu
+
+# Danish
+msgid "lang.da"
+msgstr "Dansk"
+
+# English
+msgid "lang.en"
+msgstr "English"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will also need to add this to all the other language files. Since these have been written at different times it might be located in the beginning or in the end of the file.</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s update messages.pot by generating a fresh one. It should be generated anew whenever a translation is being worked on. To generate a new one, make sure libki-server is your current directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./script/utilities/update_i18n.sh --generate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the template to your language and edit it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cp lib/Libki/I18N/messages.pot da.po</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is strongly suggested to use a dedicated po editor. We recommend <a href="https://poedit.net">Poedit</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_updating_an_existing_translation">Updating an existing translation</h5>
+<div class="paragraph">
+<p>If you want to update an existing translation you need to generate a new messages.pot and update your translation so it&#8217;s based on the new messages.pot. As a part of the update process things that have changed will be marked up, making them easy to find.</p>
+</div>
+<div class="paragraph">
+<p>First, generate a new messages.pot. Make sure libki-server is your current directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./script/utilities/update_i18n.sh --generate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once it&#8217;s generated, update the existing translation. This too must be run from libki-server. We&#8217;re using Danish as our translation here.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./script/utilities/update_i18n.sh --update lib/Libki/I18N/da.po</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A backup will be created in lib/Libki/I18N in case you need it. Just remember to delete it before making a pull request.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re using <a href="https://poedit.net">Poedit</a> to edit your translation it&#8217;s easy to find the next incomplete line with shift-ctrl-down.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_translating_the_client">7.2.2. Translating the client</h4>
+<div class="paragraph">
+<p>The client is translated with a .qm file generated from a .ts file. We&#8217;re editing the .ts file and once that&#8217;s done we generate a .qm file. You need to have Qt Linguist installed. On Linux, that&#8217;s qt5-dev-tools. <code>sudo apt install qt5-dev-tools</code>. On Windows, the easiest way is to download it from Thruask&#8217;s github. <a href="https://github.com/thurask/Qt-Linguist/releases" class="bare">https://github.com/thurask/Qt-Linguist/releases</a></p>
+</div>
+<div class="paragraph">
+<p>First we need to edit Libki.pro. Open it and add your language to the list of translations. Use the same syntax as the other ones have. Here I&#8217;m adding Danish. A complete list of language codes can be found <a href="https://developer.chrome.com/webstore/i18n">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>TRANSLATIONS = languages/libkiclient_fr.ts \
+        languages/libkiclient_sv.ts \
+        languages/libkiclient_da.ts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next is the creation of the .ts file. This is done with <code>lupdate Libki.pro</code>, either in terminal, cmd or Powershell.</p>
+</div>
+<div class="paragraph">
+<p>Now use Qt Linguist to translate your .ts file. It&#8217;s located in the languages directory.</p>
+</div>
+<div class="paragraph">
+<p>When that&#8217;s done, create a .qm file. <code>lrelease Libki.pro</code> This will also update the other language files as well.</p>
+</div>
+<div class="paragraph">
+<p>Finally, add the .qm file to libki.qrc. Here I&#8217;ve added Danish at the bottom.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+    &lt;qresource prefix="/"&gt;
+        &lt;file&gt;languages/libkiclient_fr.qm&lt;/file&gt;
+        &lt;file&gt;languages/libkiclient_sv.qm&lt;/file&gt;
+        &lt;file&gt;languages/libkiclient_es.qm&lt;/file&gt;
+    &lt;/qresource&gt;
+&lt;/RCC&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manual">7.3. Manual</h3>
 <div class="paragraph">
 <p>Suggestions for edits can be sent to the Libki Documentation Team as a merge request via GitHub.</p>
 </div>
@@ -2583,7 +2710,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-05-08 18:31:12 UTC
+Last updated 2019-05-09 10:30:38 UTC
 </div>
 </div>
 </body>
