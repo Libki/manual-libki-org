@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2019-07-12</span>
+<span id="revdate">2019-08-16</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -486,20 +486,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_backup_restoration">6. Backup &amp; restoration</a>
 <ul class="sectlevel2">
-<li><a href="#_backing_up">6.1. Backing up</a></li>
-<li><a href="#_restoring_a_backup">6.2. Restoring a backup</a></li>
+<li><a href="#_backing_up_the_database">6.1. Backing up the database</a></li>
+<li><a href="#_backing_up_the_server_files">6.2. Backing up the server files</a></li>
+<li><a href="#_restoring_a_database_backup">6.3. Restoring a database backup</a></li>
+<li><a href="#_restoring_a_backup_of_the_server_files">6.4. Restoring a backup of the server files</a></li>
 </ul>
 </li>
-<li><a href="#_contributing">7. Contributing</a>
+<li><a href="#_updating_the_server">7. Updating the server</a>
 <ul class="sectlevel2">
-<li><a href="#_client_server">7.1. Client &amp; server</a></li>
-<li><a href="#_translation">7.2. Translation</a></li>
-<li><a href="#_manual">7.3. Manual</a></li>
+<li><a href="#_precautions">7.1. Precautions</a></li>
+<li><a href="#_get_the_latest_version_and_updating_the_database">7.2. Get the latest version and updating the database</a></li>
+<li><a href="#_updating_the_server_files">7.3. Updating the server files</a></li>
 </ul>
 </li>
-<li><a href="#_credits">8. Credits</a>
+<li><a href="#_contributing">8. Contributing</a>
 <ul class="sectlevel2">
-<li><a href="#_authors">8.1. Authors</a></li>
+<li><a href="#_client_server">8.1. Client &amp; server</a></li>
+<li><a href="#_translation">8.2. Translation</a></li>
+<li><a href="#_manual">8.3. Manual</a></li>
+</ul>
+</li>
+<li><a href="#_credits">9. Credits</a>
+<ul class="sectlevel2">
+<li><a href="#_authors">9.1. Authors</a></li>
 </ul>
 </li>
 </ul>
@@ -2383,7 +2392,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_backing_up">6.1. Backing up</h3>
+<h3 id="_backing_up_the_database">6.1. Backing up the database</h3>
 <div class="paragraph">
 <p>The backup program is intended to be used on a server with a libki user.</p>
 </div>
@@ -2446,7 +2455,18 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_restoring_a_backup">6.2. Restoring a backup</h3>
+<h3 id="_backing_up_the_server_files">6.2. Backing up the server files</h3>
+<div class="paragraph">
+<p>The easiest way to backup the server files is to tar the libki-server folder in the libki user&#8217;s home folder. I suggest you put it in the same backup folder as the database backup.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">tar -pzcvf /home/libki/backups/libki-server-backup_190816.tar.gz /home/libki/libki-server</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restoring_a_database_backup">6.3. Restoring a database backup</h3>
 <div class="paragraph">
 <p>Restoring a backup of the database will delete the current database, so be sure you really want to do this.</p>
 </div>
@@ -2470,15 +2490,101 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <p>Your database is now at the point it was when the backup was created.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_restoring_a_backup_of_the_server_files">6.4. Restoring a backup of the server files</h3>
+<div class="paragraph">
+<p>Start by removing the current server files and replace them with the backup archive.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki stop
+rm -rf /home/libki/libki-server
+tar -pzxvf /home/libki/backups/libki-server-backup_190816.tar.gz /home/libki/libki-server
+service libki start</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing">7. Contributing</h2>
+<h2 id="_updating_the_server">7. Updating the server</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_client_server">7.1. Client &amp; server</h3>
+<h3 id="_precautions">7.1. Precautions</h3>
+<div class="paragraph">
+<p>It is <strong>HIGHLY</strong> advised to only update the server while the system is not being used and the service is shut down.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki stop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then make a backup of your current server and database, in case something doesn&#8217;t go as smoothly as planned. Updating isn&#8217;t entirely stable, especially when updating from very old installations.</p>
+</div>
+<div class="paragraph">
+<p>Please read through the backup section on how to backup your server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_the_latest_version_and_updating_the_database">7.2. Get the latest version and updating the database</h3>
+<div class="paragraph">
+<p>Enter your libki-server folder and use <code>git pull</code> to download the latest version. Run <code>installer/update_db.pl</code> in order to update the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd libki-server
+git pull
+./installer/update_db.pl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>OBSERVE</strong> that if you&#8217;re upgrading from a 2.x installation, this won&#8217;t work. You&#8217;ll need to use the latest 2.x release r19.08 as a stepping stone before updating to a 3.x server, in order to convert the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd ~
+apt update &amp;&amp; apt install unzip -y
+wget https://github.com/Libki/libki-server/archive/r19.08.zip
+unzip r19.08.zip
+./r19.08/installer/update_db.pl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can run the latest <code>update_db.pl</code> again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating_the_server_files">7.3. Updating the server files</h3>
+<div class="paragraph">
+<p>Once the database is up to date, it&#8217;s time to update the server files. Delete the old server files, replace them with the new ones and change ownership of them to the libki user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd ~
+rm -rf /home/libki/libki-server
+cp -r libki-server /home/libki/libki-server
+chown -R libki:libki /home/libki/libki-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once all that is done, it&#8217;s time to start the service again. If everything worked out properly, your Libki server should be updated and working just as well (or even better) than before.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki start</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing">8. Contributing</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_client_server">8.1. Client &amp; server</h3>
 <div class="sect3">
-<h4 id="_submitting_bug_fixes_and_features">7.1.1. Submitting bug fixes and features</h4>
+<h4 id="_submitting_bug_fixes_and_features">8.1.1. Submitting bug fixes and features</h4>
 <div class="sect4">
 <h5 id="_formatting_patches">Formatting patches</h5>
 <div class="ulist">
@@ -2523,7 +2629,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_coding_guidelines">7.1.2. Coding guidelines</h4>
+<h4 id="_coding_guidelines">8.1.2. Coding guidelines</h4>
 <div class="sect4">
 <h5 id="_server_coding_guidelines">Server coding guidelines</h5>
 <div class="ulist">
@@ -2544,9 +2650,9 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_translation">7.2. Translation</h3>
+<h3 id="_translation">8.2. Translation</h3>
 <div class="sect3">
-<h4 id="_translating_the_server">7.2.1. Translating the server</h4>
+<h4 id="_translating_the_server">8.2.1. Translating the server</h4>
 <div class="sect4">
 <h5 id="_starting_a_new_translation">Starting a new translation</h5>
 <div class="paragraph">
@@ -2630,7 +2736,7 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_translating_the_client">7.2.2. Translating the client</h4>
+<h4 id="_translating_the_client">8.2.2. Translating the client</h4>
 <div class="paragraph">
 <p>The client is translated with a .qm file generated from a .ts file. We&#8217;re editing the .ts file and once that&#8217;s done we generate a .qm file. You need to have Qt Linguist installed. On Linux, that&#8217;s qt5-dev-tools. <code>sudo apt install qt5-dev-tools</code>. On Windows, the easiest way is to download it from Thruask&#8217;s github. <a href="https://github.com/thurask/Qt-Linguist/releases" class="bare">https://github.com/thurask/Qt-Linguist/releases</a></p>
 </div>
@@ -2670,7 +2776,7 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manual">7.3. Manual</h3>
+<h3 id="_manual">8.3. Manual</h3>
 <div class="paragraph">
 <p>Suggestions for edits can be sent to the Libki Documentation Team as a merge request via GitHub.</p>
 </div>
@@ -2684,10 +2790,10 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credits">8. Credits</h2>
+<h2 id="_credits">9. Credits</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_authors">8.1. Authors</h3>
+<h3 id="_authors">9.1. Authors</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2711,7 +2817,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-07-12 20:15:58 UTC
+Last updated 2019-08-16 15:58:28 UTC
 </div>
 </div>
 </body>
