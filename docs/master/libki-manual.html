@@ -1994,9 +1994,9 @@ session-cleanup-script=/usr/local/bin/restore</code></pre>
 </div>
 <div class="paragraph">
 <p>In <code>/usr/share/cinnamon/applets/menu@cinnamon.org/applet.js</code>, find the line <code>//Lock screen</code>.
-Start a multiline comment there with <code>/<strong></code> and go to the line <code>//Shutdown button</code>.
+Start a multiline comment there with <code>/*</code> and go to the line <code>//Shutdown button</code>.
 Somewhat close to that one, 15 lines or so, there should be a line saying <code>this.systemButtonsBox.add(button.aactor, { y_align: St.Align.END, y_fill: false });</code>.
-End your multiline comment after this line with <code></strong>/</code>.</p>
+End your multiline comment after this line with <code>\*/</code>.</p>
 </div>
 <div class="paragraph">
 <p>Finally, I set my preferred volume and remove the volume icon from the toolbar. All our clients have headphones, and they can leak quite a lot if the volume is high enough.</p>
@@ -2602,7 +2602,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2020-01-29 16:32:25 UTC
+Last updated 2020-01-29 17:11:29 UTC
 </div>
 </div>
 </body>
