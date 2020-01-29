@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2019-11-11</span>
+<span id="revdate">2020-01-29</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1875,6 +1875,111 @@ It is recommended to use the default installation path unless you have a specifi
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_configuration_2">5.2.3. Configuration</h4>
+<div class="sect4">
+<h5 id="_linux_mint_with_cinnamon">Linux Mint with Cinnamon</h5>
+<div class="sect5">
+<h6 id="_bypass_prevention">Bypass prevention</h6>
+<div class="paragraph">
+<p><a href="https://github.com/Libki/libki-client/issues/39#issuecomment-562189590">Contributed</a> by <a href="https://github.com/loidor">Loidor</a></p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m running libkiclient through startup applications without a delay, and that launches it fast enough.
+Then I&#8217;m running a script I call demapper with a 2 second delay, because it isn&#8217;t reliable with a shorter delay.
+That disables Alt and Super, so it&#8217;s impossible to switch workspace, launch the start menu and opening the run console.</p>
+</div>
+<div class="paragraph">
+<p>Code for demapper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+xmodmap -e 'keycode 133='
+xmodmap -e 'keycode 64='</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other bypass preventions:
+* Disable the power button
+* Disabling remote media popup (Nemo&#8594;Preferences&#8594;Behaviour)
+* Replace the user shell with rbash chsh -s /bin/rbash USERNAME</p>
+</div>
+<div class="paragraph">
+<p>I haven&#8217;t encountered anyone terminal-savvy enough yet, but once I do I&#8217;ll look into disabling kill, killall and pkill.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_autologin_backup_restore">Autologin, backup, restore</h6>
+<div class="paragraph">
+<p>I&#8217;ve disabled the screensaver, since I don&#8217;t want the client to become locked, and have an autologin set in /etc/lightdm/lightdm.conf.</p>
+</div>
+<div class="paragraph">
+<p>Together with this, I&#8217;ve got a backup/restore solution where backup copies /home/USERNAME to /opt/USERNAME. restore deletes /home/USERNAME and replaces it with /opt/USERNAME. Only root can run backup when needed (after changes), and restore is run on every logout through lightdm.conf.</p>
+</div>
+<div class="paragraph">
+<p>backup code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
+rm -rf /opt/public
+cp -a /home/public /opt/public
+echo "Backup klar."</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>restore code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+rsync -qrpog --delete --exclude '.X*' /opt/public /home/
+echo "" &gt; /home/public/.local/share/recently-used.xbel
+rm /var/spool/cups/*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My lightdm.conf:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[Seat:*]
+autologin-guest=false
+autologin-user=public
+autologin-user-timeout=5
+
+session-cleanup-script=/usr/local/bin/restore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other things:
+* I install Google Chrome since pretty much everyone is familiar with it regardless of what system they&#8217;re used to running. The keychain password is set to blank/unencrypted.
+* I change LibreOffice Writer to save to docx as default.
+* I add shortcuts to Chrome and Writer to the desktop.
+* I remove terminal from the quick launch toolbar since most users don&#8217;t know what it is.
+* I remove logout and shutdown options from the start menu. (This is a PITA to do by hand, but here it goes:</p>
+</div>
+<div class="paragraph">
+<p>In <code>/usr/share/cinnamon/applets/menu@cinnamon.org/applet.js</code>, find the line <code>//Lock screen</code>.
+Start a multiline comment there with <code>/<strong></code> and go to the line <code>//Shutdown button</code>.
+Somewhat close to that one, 15 lines or so, there should be a line saying <code>this.systemButtonsBox.add(button.aactor, { y_align: St.Align.END, y_fill: false });</code>.
+End your multiline comment after this line with <code></strong>/</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, I set my preferred volume and remove the volume icon from the toolbar. All our clients have headphones, and they can leak quite a lot if the volume is high enough.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuration_options">5.3. Configuration options</h3>
@@ -2473,7 +2578,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2019-11-11 11:34:20 UTC
+Last updated 2020-01-29 16:28:16 UTC
 </div>
 </div>
 </body>
