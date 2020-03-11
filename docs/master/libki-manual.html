@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2020-01-30</span>
+<span id="revdate">2020-03-11</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1527,10 +1527,15 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 <div class="sect2">
 <h3 id="_print_management_2">3.3. Print management</h3>
 <div class="paragraph">
-<p>Print management in Libki is powered by Google Cloud Print. To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
+<p>Print management in Libki can be done using two different backends: Google Cloud Print and CUPS.</p>
 </div>
 <div class="sect3">
-<h4 id="_finding_your_cloud_printer_id">3.3.1. Finding your cloud printer id:</h4>
+<h4 id="_configuring_your_server_with_google_cloud_print">3.3.1. Configuring your server with Google Cloud Print</h4>
+<div class="paragraph">
+<p>To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
+</div>
+<div class="sect4">
+<h5 id="_finding_your_cloud_printer_id">Finding your cloud printer id:</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1548,8 +1553,8 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getting_your_client_id_and_client_secret">3.3.2. Getting your client id and client secret</h4>
+<div class="sect4">
+<h5 id="_getting_your_client_id_and_client_secret">Getting your client id and client secret</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1576,8 +1581,8 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 <div class="title">Figure 1. Google Developer Console</div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_setting_up_your_print_management_configuration">3.3.3. Setting up your print management configuration</h4>
+<div class="sect4">
+<h5 id="_setting_up_your_print_management_configuration">Setting up your print management configuration</h5>
 <div class="paragraph">
 <p>You can use the configuration below as a template, simply replace the <code>client_id</code>, <code>client_secret</code>, and <code>google_cloud_id</code> field values with your own.</p>
 </div>
@@ -1609,8 +1614,8 @@ printers:
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_authorizing_your_server_to_use_the_cloud_print_api">3.3.4. Authorizing your server to use the Cloud Print API</h4>
+<div class="sect4">
+<h5 id="_authorizing_your_server_to_use_the_cloud_print_api">Authorizing your server to use the Cloud Print API</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1634,8 +1639,33 @@ printers:
 </ol>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_configuring_your_clients">3.3.5. Configuring your clients</h4>
+<h4 id="_configuring_your_server_with_cups">3.3.2. Configuring your server with CUPS</h4>
+<div class="paragraph">
+<p>To set up print management using CUPS, you need to know the name of the CUPS server (or its IP address), the username used to conect to that server and the name of the printer that will be set up.</p>
+</div>
+<div class="sect4">
+<h5 id="_setting_up_your_print_management_configuration_2">Setting up your print management configuration</h5>
+<div class="paragraph">
+<p>You can use the configuration below as a template, simply replace the <code>server</code> and <code>username</code> field values with your own.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">cups:
+      server: localhost
+      username: print
+
+printers:
+  PDF:
+    type: cups
+    name: PDF</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuring_your_clients">3.3.3. Configuring your clients</h4>
 <div class="paragraph">
 <p>After you&#8217;ve set up your server for print management, you will then need to configure your clients as well.
 To accomplish this, you must edit the <code>Libki Kiosk Management System.ini</code> file.
@@ -2602,7 +2632,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2020-01-30 09:51:28 UTC
+Last updated 2020-03-11 10:34:22 UTC
 </div>
 </div>
 </body>
