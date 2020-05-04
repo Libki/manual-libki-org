@@ -444,8 +444,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="details">
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
-<span id="revnumber">version ,</span>
-<span id="revdate">2019-07-12</span>
+<span id="revnumber">version 20.05,</span>
+<span id="revdate">2020-05-04</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -460,8 +460,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_installation">2. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#_automatic_installation">2.1. Automatic installation</a></li>
-<li><a href="#_manual_installation">2.2. Manual installation</a></li>
+<li><a href="#_one_step_automatic_install">2.1. One-step automatic install</a></li>
+<li><a href="#_alternative_method">2.2. Alternative method</a></li>
 <li><a href="#_docker">2.3. Docker</a></li>
 </ul>
 </li>
@@ -486,20 +486,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_backup_restoration">6. Backup &amp; restoration</a>
 <ul class="sectlevel2">
-<li><a href="#_backing_up">6.1. Backing up</a></li>
-<li><a href="#_restoring_a_backup">6.2. Restoring a backup</a></li>
+<li><a href="#_backing_up_the_database">6.1. Backing up the database</a></li>
+<li><a href="#_backing_up_the_server_files">6.2. Backing up the server files</a></li>
+<li><a href="#_restoring_a_database_backup">6.3. Restoring a database backup</a></li>
+<li><a href="#_restoring_a_backup_of_the_server_files">6.4. Restoring a backup of the server files</a></li>
 </ul>
 </li>
-<li><a href="#_contributing">7. Contributing</a>
+<li><a href="#_updating_the_server">7. Updating the server</a>
 <ul class="sectlevel2">
-<li><a href="#_client_server">7.1. Client &amp; server</a></li>
-<li><a href="#_translation">7.2. Translation</a></li>
-<li><a href="#_manual">7.3. Manual</a></li>
+<li><a href="#_precautions">7.1. Precautions</a></li>
+<li><a href="#_get_the_latest_version_and_updating_the_database">7.2. Get the latest version and updating the database</a></li>
+<li><a href="#_updating_the_server_files">7.3. Updating the server files</a></li>
 </ul>
 </li>
-<li><a href="#_credits">8. Credits</a>
+<li><a href="#_contributing">8. Contributing</a>
 <ul class="sectlevel2">
-<li><a href="#_authors">8.1. Authors</a></li>
+<li><a href="#_client_server">8.1. Client &amp; server</a></li>
+<li><a href="#_translation">8.2. Translation</a></li>
+<li><a href="#_manual">8.3. Manual</a></li>
+</ul>
+</li>
+<li><a href="#_credits">9. Credits</a>
+<ul class="sectlevel2">
+<li><a href="#_authors">9.1. Authors</a></li>
 </ul>
 </li>
 </ul>
@@ -574,373 +583,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_installation">2. Installation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_automatic_installation">2.1. Automatic installation</h3>
+<h3 id="_one_step_automatic_install">2.1. One-step automatic install</h3>
 <div class="paragraph">
-<p>When using the automatic installer, the server must be Ubuntu Server 18.04, Debian Stretch or Debian Buster.</p>
-</div>
-<div class="paragraph">
-<p>Please read through the installation moments. There is a one-line command in the end if that&#8217;s what you prefer.</p>
-</div>
-<div class="sect3">
-<h4 id="_login_as_root">2.1.1. Login as root</h4>
-<div class="paragraph">
-<p>If you are not logged in as root, switch to root.</p>
+<p>Do you want to setup Libki as fast as possible and have a dedicated server? Then this is the choice for you. Just make sure your server is running Ubuntu 18.04 or Debian 10 (Buster) and that you don&#8217;t have a user named 'libki'.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">sudo su</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_updating_upgrading_and_installing_git">2.1.2. Updating, upgrading and installing git</h4>
-<div class="paragraph">
-<p>It&#8217;s always best to do a fresh upgrade to be sure you have the latest versions of software available.</p>
-</div>
-<div class="paragraph">
-<p>Git is used to download the Libki server.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git -y</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_downloading_and_running_the_installer">2.1.3. Downloading and running the installer</h4>
-<div class="paragraph">
-<p>First download the Libki server.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/libki/libki-server.git</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">wget -O- install.libki.org | bash</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Enter the downloaded directory.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cd libki-server</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Run the installer.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">./install.sh</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_one_line_installer">2.1.4. One-line installer</h4>
-<div class="paragraph">
-<p>This is the whole installation process in one single line.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y &amp;&amp; apt install git -y &amp;&amp; git clone https://github.com/libki/libki-server.git &amp;&amp; cd libki-server &amp;&amp; ./install.sh</code></pre>
-</div>
-</div>
+<p>(By the way, that&#8217;s the letter O, not the number 0.)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manual_installation">2.2. Manual installation</h3>
+<h3 id="_alternative_method">2.2. Alternative method</h3>
 <div class="paragraph">
-<p>If you wish to completely build the Libki server by yourself, these guidelines should help you along the way. This is written towards someone new to terminal and a lack of GUI.</p>
-</div>
-<div class="paragraph">
-<p>First of all, update and upgrade.</p>
+<p>Everyone doesn&#8217;t want to pipe to bash. It prevents you from reading the code you&#8217;re about to run on your system. If you want to read it through first, this alternative should be for you.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt update &amp;&amp; apt upgrade -y</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_dependencies">2.2.1. Dependencies</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt install cpanm curl perl git make build-essential unzip mysql-server ntp -y</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You might need these packages too, depending on your server. If you encounter error messages when installing the needed perl modules, this is the place to start.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt install libmysqlclient-dev libxml-parser-perl libxml-libxml-perl</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_setting_up_a_user">2.2.2. Setting up a user</h4>
-<div class="paragraph">
-<p>It is suggested to setup a new user account to run the server from. From here on, we&#8217;ll use the username <strong>libki</strong>. Give it a good, strong (and preferrably memorable) password.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">adduser libki</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_clone_the_repository">2.2.3. Clone the repository</h4>
-<div class="paragraph">
-<p>Clone the repo to the home directory of your newly created user.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/libki/libki-server.git /home/libki/libki-server</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_install_needed_perl_modules">2.2.4. Install needed perl modules</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cd /home/libki/libki-server
-cpanm -n --installdeps .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will take a while. Make sure it ends with saying everything was installed correctly. If not, you will need to fix what&#8217;s missing.</p>
-</div>
-<div class="paragraph">
-<p>Now we need to add the Libki server&#8217;s perl module to our $PATH, so our shell knows where to find it.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; ~/.bashrc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We also need to add it to the libki user&#8217;s $PATH.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">echo "export PERL5LIB=$PERL5LIB:/home/libki/libki-server/lib" &gt;&gt; /home/libki/.bashrc</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_create_a_database">2.2.5. Create a database</h4>
-<div class="paragraph">
-<p>Depending on your MySQL or MariaDB version, it may or may not want you to log in with a username and password. If you are to log in with a username and password, the username is <strong>root</strong> and you chose the password during the dependencies installation.</p>
-</div>
-<div class="paragraph">
-<p>If that&#8217;s the case, start MySQL with <code>mysql -uroot -p</code>.</p>
-</div>
-<div class="paragraph">
-<p>If you didn&#8217;t get to create a root password during installation, just start MySQL with <code>mysql</code>.</p>
-</div>
-<div class="paragraph">
-<p>Once inside MySQL, we need to create a database and a user. Note that all aphostrophes are essential and cannot be omitted.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE libki;
-CREATE USER 'libki'@'localhost' IDENTIFIED BY 'CHOOSEAPASSWORD';
-GRANT ALL PRIVILEGES ON libki.* TO 'libki'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_populate_the_database_and_create_an_admin_account">2.2.6. Populate the database and create an admin account</h4>
-<div class="paragraph">
-<p>We got our perl modules, we have an empty database&#8230;&#8203; Let&#8217;s fill it with things.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">./installer/update_db.pl</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In order for Libki to access the database, we must give it the login information. Make a copy of the libki_local.conf.example file and remove .example. Open it and change the password to the one you chose.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cp libki_local.conf.example libki_local.conf
-nano libki_local.conf</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You save and close with Ctrl-O and Ctrl-X, respectively.</p>
-</div>
-<div class="paragraph">
-<p>Now create an admin account, so we can access the administration pages once the server is up and running.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">./script/administration/create_user.pl -u ADMINUSERNAME -p ADMINPASSWORD -s</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_setting_up_log_files">2.2.7. Setting up log files</h4>
-<div class="paragraph">
-<p>The Libki server will produce log files. Their default location is /var/log/libki. Even if you don&#8217;t want to change the default location, you still need to make a working copy the log4perl.conf.example file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cp log4perl.conf.example log4perl.conf</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_installing_cron_jobs">2.2.8. Installing cron jobs</h4>
-<div class="paragraph">
-<p>Part of what makes the Libki server tick are repeating scheduled tasks called cronjobs.</p>
-</div>
-<div class="paragraph">
-<p>Libki has two cronjobs. The first one <code>script/cronjobs/libki.pl</code> runs each and every minute and performs tasks such as decrementing time for logged in users and logging out users whose time has run out.</p>
-</div>
-<div class="paragraph">
-<p>The second cronjob <code>script/cronjobs/libki_nightly.pl</code> performs nightly tasks such as resetting everyones allotment of minutes and deleting data that is past the retention dates specified in the server settings.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If a cronjob doesn&#8217;t seem to be working, run it manually and look for errors. A common problem is that a script is unable to write to a log file due to incorrect permissions.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>There are two pre-written cron files, just to import. The first one is for the libki user and the second one for root.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cat installer/cron/libkicron | crontab -u libki -
-cat installer/cron/rootcron | crontab -</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_create_a_libki_service">2.2.9. Create a Libki service</h4>
-<div class="paragraph">
-<p>Copy the init template to /etc/init.d.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cp init-script-template /etc/init.d/libki</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to edit the port of the server (if you, for example, want to run it on port 80 and don&#8217;t want to use a reverse proxy), this is the time. Open it up, change port number from 3000 to 80 (or something else), save and close.</p>
-</div>
-<div class="paragraph">
-<p>Finally, run update-rc.d to enable Libki as a service.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">update-rc.d libki defaults</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_start_the_server">2.2.10. Start the server</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">service libki start</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If all went well, you should have a server up and running by now. You can visit it on <a href="http://127.0.0.1:3000/administration" class="bare">http://127.0.0.1:3000/administration</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_manual_install_optional_set_up_your_reverse_proxy">2.2.11. Manual install optional: Set up your reverse proxy</h4>
-<div class="paragraph">
-<p>Make sure you&#8217;re logged in as root.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install Apache</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">apt-get install apache2</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Navigate to the libki-server directory</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cd /home/libki/libki-server</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Run the apache_setup.sh script</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This disables the old default conf, copies reverse_proxy.config to Apache&#8217;s folder and enables both the Libki reverse proxy and the needed modules..</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">./script/setup/apache_setup.sh</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Restart apache</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">service apache2 restart</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_troubleshooting">2.2.12. Troubleshooting</h4>
-<div class="paragraph">
-<p>You can now test to see if your server is running by using the cli web browser 'links'. If you don&#8217;t have links installed you can installed it via the command</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt-get install links</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now, open the Libki public page via:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">links 127.0.0.1:80</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If this loads the Libki login page, congrats! If you get an error, you can try bypassing the proxy and access the server directly on port 3000.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">links 127.0.0.1:3000</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If this works, then you&#8217;ll want to check your Apache error logs for the failure reason. If it does not work, you&#8217;ll want to check the Libki server error log instead. It can be found at /home/libki/libki\_server.log if you&#8217;ve followed this tutorial closely.</p>
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/libki/libki-server.git
+cd libki-server
+bash install.sh</code></pre>
 </div>
 </div>
 </div>
@@ -1862,10 +1527,15 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 <div class="sect2">
 <h3 id="_print_management_2">3.3. Print management</h3>
 <div class="paragraph">
-<p>Print management in Libki is powered by Google Cloud Print. To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
+<p>Print management in Libki can be done using two different backends: Google Cloud Print and CUPS.</p>
 </div>
 <div class="sect3">
-<h4 id="_finding_your_cloud_printer_id">3.3.1. Finding your cloud printer id:</h4>
+<h4 id="_configuring_your_server_with_google_cloud_print">3.3.1. Configuring your server with Google Cloud Print</h4>
+<div class="paragraph">
+<p>To set up print management, first set up your printers in Google Cloud Print. Next, generate a client id and secret. Finally, enter your configuration in the <strong>Printer configuration</strong> setting as YAML. The code block below is an example configuration with two printer profiles for a single printer ( one color, one monochrome ).</p>
+</div>
+<div class="sect4">
+<h5 id="_finding_your_cloud_printer_id">Finding your cloud printer id:</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1883,8 +1553,8 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getting_your_client_id_and_client_secret">3.3.2. Getting your client id and client secret</h4>
+<div class="sect4">
+<h5 id="_getting_your_client_id_and_client_secret">Getting your client id and client secret</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1911,8 +1581,8 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 <div class="title">Figure 1. Google Developer Console</div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_setting_up_your_print_management_configuration">3.3.3. Setting up your print management configuration</h4>
+<div class="sect4">
+<h5 id="_setting_up_your_print_management_configuration">Setting up your print management configuration</h5>
 <div class="paragraph">
 <p>You can use the configuration below as a template, simply replace the <code>client_id</code>, <code>client_secret</code>, and <code>google_cloud_id</code> field values with your own.</p>
 </div>
@@ -1944,8 +1614,8 @@ printers:
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_authorizing_your_server_to_use_the_cloud_print_api">3.3.4. Authorizing your server to use the Cloud Print API</h4>
+<div class="sect4">
+<h5 id="_authorizing_your_server_to_use_the_cloud_print_api">Authorizing your server to use the Cloud Print API</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1969,8 +1639,33 @@ printers:
 </ol>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_configuring_your_clients">3.3.5. Configuring your clients</h4>
+<h4 id="_configuring_your_server_with_cups">3.3.2. Configuring your server with CUPS</h4>
+<div class="paragraph">
+<p>To set up print management using CUPS, you need to know the name of the CUPS server (or its IP address), the username used to conect to that server and the name of the printer that will be set up.</p>
+</div>
+<div class="sect4">
+<h5 id="_setting_up_your_print_management_configuration_2">Setting up your print management configuration</h5>
+<div class="paragraph">
+<p>You can use the configuration below as a template, simply replace the <code>server</code> and <code>username</code> field values with your own.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">cups:
+      server: localhost
+      username: print
+
+printers:
+  PDF:
+    type: cups
+    name: PDF</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuring_your_clients">3.3.3. Configuring your clients</h4>
 <div class="paragraph">
 <p>After you&#8217;ve set up your server for print management, you will then need to configure your clients as well.
 To accomplish this, you must edit the <code>Libki Kiosk Management System.ini</code> file.
@@ -2210,6 +1905,135 @@ It is recommended to use the default installation path unless you have a specifi
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_configuration_2">5.2.3. Configuration</h4>
+<div class="sect4">
+<h5 id="_linux_mint_with_cinnamon">Linux Mint with Cinnamon</h5>
+<div class="paragraph">
+<p><a href="https://github.com/Libki/libki-client/issues/39#issuecomment-562189590">Contributed</a> by <a href="https://github.com/loidor">Loidor</a></p>
+</div>
+<div class="sect5">
+<h6 id="_bypass_prevention">Bypass prevention</h6>
+<div class="paragraph">
+<p>I&#8217;m running libkiclient through startup applications without a delay, and that launches it fast enough.
+Then I&#8217;m running a script I call demapper with a 2 second delay, because it isn&#8217;t reliable with a shorter delay.
+That disables Alt and Super, so it&#8217;s impossible to switch workspace, launch the start menu and opening the run console.</p>
+</div>
+<div class="paragraph">
+<p>Code for demapper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+xmodmap -e 'keycode 133='
+xmodmap -e 'keycode 64='</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other bypass preventions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Disable the power button</p>
+</li>
+<li>
+<p>Disabling remote media popup (Nemo&#8594;Preferences&#8594;Behaviour)</p>
+</li>
+<li>
+<p>Replace the user shell with rbash chsh -s /bin/rbash USERNAME</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I haven&#8217;t encountered anyone terminal-savvy enough yet, but once I do I&#8217;ll look into disabling kill, killall and pkill.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_autologin_backup_restore">Autologin, backup, restore</h6>
+<div class="paragraph">
+<p>I&#8217;ve disabled the screensaver, since I don&#8217;t want the client to become locked, and have an autologin set in /etc/lightdm/lightdm.conf.</p>
+</div>
+<div class="paragraph">
+<p>Together with this, I&#8217;ve got a backup/restore solution where backup copies /home/USERNAME to /opt/USERNAME. restore deletes /home/USERNAME and replaces it with /opt/USERNAME. Only root can run backup when needed (after changes), and restore is run on every logout through lightdm.conf.</p>
+</div>
+<div class="paragraph">
+<p>backup code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
+rm -rf /opt/public
+cp -a /home/public /opt/public
+echo "Backup klar."</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>restore code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash
+
+rsync -qrpog --delete --exclude '.X*' /opt/public /home/
+echo "" &gt; /home/public/.local/share/recently-used.xbel
+rm /var/spool/cups/*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My lightdm.conf:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[Seat:*]
+autologin-guest=false
+autologin-user=public
+autologin-user-timeout=5
+
+session-cleanup-script=/usr/local/bin/restore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>I install Google Chrome since pretty much everyone is familiar with it regardless of what system they&#8217;re used to running. The keychain password is set to blank/unencrypted.</p>
+</li>
+<li>
+<p>I change LibreOffice Writer to save to docx as default.</p>
+</li>
+<li>
+<p>I add shortcuts to Chrome and Writer to the desktop.</p>
+</li>
+<li>
+<p>I remove terminal from the quick launch toolbar since most users don&#8217;t know what it is.</p>
+</li>
+<li>
+<p>I remove logout and shutdown options from the start menu. (This is a PITA to do by hand, but here it goes:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In <code>/usr/share/cinnamon/applets/menu@cinnamon.org/applet.js</code>, find the line <code>//Lock screen</code>.
+Start a multiline comment there with <code>\*</code> and go to the line <code>//Shutdown button</code>.
+Somewhat close to that one, 15 lines or so, there should be a line saying <code>this.systemButtonsBox.add(button.aactor, { y_align: St.Align.END, y_fill: false });</code>.
+End your multiline comment after this line with <code>*/</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, I set my preferred volume and remove the volume icon from the toolbar. All our clients have headphones, and they can leak quite a lot if the volume is high enough.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuration_options">5.3. Configuration options</h3>
@@ -2383,7 +2207,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_backing_up">6.1. Backing up</h3>
+<h3 id="_backing_up_the_database">6.1. Backing up the database</h3>
 <div class="paragraph">
 <p>The backup program is intended to be used on a server with a libki user.</p>
 </div>
@@ -2446,7 +2270,18 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_restoring_a_backup">6.2. Restoring a backup</h3>
+<h3 id="_backing_up_the_server_files">6.2. Backing up the server files</h3>
+<div class="paragraph">
+<p>The easiest way to backup the server files is to tar the libki-server folder in the libki user&#8217;s home folder. I suggest you put it in the same backup folder as the database backup.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">tar -pzcvf /home/libki/backups/libki-server-backup_190816.tar.gz /home/libki/libki-server</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restoring_a_database_backup">6.3. Restoring a database backup</h3>
 <div class="paragraph">
 <p>Restoring a backup of the database will delete the current database, so be sure you really want to do this.</p>
 </div>
@@ -2470,15 +2305,101 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 <p>Your database is now at the point it was when the backup was created.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_restoring_a_backup_of_the_server_files">6.4. Restoring a backup of the server files</h3>
+<div class="paragraph">
+<p>Start by removing the current server files and replace them with the backup archive.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki stop
+rm -rf /home/libki/libki-server
+tar -pzxvf /home/libki/backups/libki-server-backup_190816.tar.gz /home/libki/libki-server
+service libki start</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing">7. Contributing</h2>
+<h2 id="_updating_the_server">7. Updating the server</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_client_server">7.1. Client &amp; server</h3>
+<h3 id="_precautions">7.1. Precautions</h3>
+<div class="paragraph">
+<p>It is <strong>HIGHLY</strong> advised to only update the server while the system is not being used and the service is shut down.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki stop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then make a backup of your current server and database, in case something doesn&#8217;t go as smoothly as planned. Updating isn&#8217;t entirely stable, especially when updating from very old installations.</p>
+</div>
+<div class="paragraph">
+<p>Please read through the backup section on how to backup your server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_the_latest_version_and_updating_the_database">7.2. Get the latest version and updating the database</h3>
+<div class="paragraph">
+<p>Enter your libki-server folder and use <code>git pull</code> to download the latest version. Run <code>installer/update_db.pl</code> in order to update the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd libki-server
+git pull
+./installer/update_db.pl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>OBSERVE</strong> that if you&#8217;re upgrading from a 2.x installation, this won&#8217;t work. You&#8217;ll need to use the latest 2.x release r19.08 as a stepping stone before updating to a 3.x server, in order to convert the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd ~
+apt update &amp;&amp; apt install unzip -y
+wget https://github.com/Libki/libki-server/archive/r19.08.zip
+unzip r19.08.zip
+./r19.08/installer/update_db.pl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can run the latest <code>update_db.pl</code> again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating_the_server_files">7.3. Updating the server files</h3>
+<div class="paragraph">
+<p>Once the database is up to date, it&#8217;s time to update the server files. Delete the old server files, replace them with the new ones and change ownership of them to the libki user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd ~
+rm -rf /home/libki/libki-server
+cp -r libki-server /home/libki/libki-server
+chown -R libki:libki /home/libki/libki-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once all that is done, it&#8217;s time to start the service again. If everything worked out properly, your Libki server should be updated and working just as well (or even better) than before.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">service libki start</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing">8. Contributing</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_client_server">8.1. Client &amp; server</h3>
 <div class="sect3">
-<h4 id="_submitting_bug_fixes_and_features">7.1.1. Submitting bug fixes and features</h4>
+<h4 id="_submitting_bug_fixes_and_features">8.1.1. Submitting bug fixes and features</h4>
 <div class="sect4">
 <h5 id="_formatting_patches">Formatting patches</h5>
 <div class="ulist">
@@ -2523,7 +2444,7 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_coding_guidelines">7.1.2. Coding guidelines</h4>
+<h4 id="_coding_guidelines">8.1.2. Coding guidelines</h4>
 <div class="sect4">
 <h5 id="_server_coding_guidelines">Server coding guidelines</h5>
 <div class="ulist">
@@ -2544,9 +2465,9 @@ It is <strong>HIGHLY</strong> advised to only perform  backups and restorations 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_translation">7.2. Translation</h3>
+<h3 id="_translation">8.2. Translation</h3>
 <div class="sect3">
-<h4 id="_translating_the_server">7.2.1. Translating the server</h4>
+<h4 id="_translating_the_server">8.2.1. Translating the server</h4>
 <div class="sect4">
 <h5 id="_starting_a_new_translation">Starting a new translation</h5>
 <div class="paragraph">
@@ -2630,7 +2551,7 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_translating_the_client">7.2.2. Translating the client</h4>
+<h4 id="_translating_the_client">8.2.2. Translating the client</h4>
 <div class="paragraph">
 <p>The client is translated with a .qm file generated from a .ts file. We&#8217;re editing the .ts file and once that&#8217;s done we generate a .qm file. You need to have Qt Linguist installed. On Linux, that&#8217;s qt5-dev-tools. <code>sudo apt install qt5-dev-tools</code>. On Windows, the easiest way is to download it from Thruask&#8217;s github. <a href="https://github.com/thurask/Qt-Linguist/releases" class="bare">https://github.com/thurask/Qt-Linguist/releases</a></p>
 </div>
@@ -2670,7 +2591,7 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manual">7.3. Manual</h3>
+<h3 id="_manual">8.3. Manual</h3>
 <div class="paragraph">
 <p>Suggestions for edits can be sent to the Libki Documentation Team as a merge request via GitHub.</p>
 </div>
@@ -2684,10 +2605,10 @@ msgstr "English"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credits">8. Credits</h2>
+<h2 id="_credits">9. Credits</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_authors">8.1. Authors</h3>
+<h3 id="_authors">9.1. Authors</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2710,8 +2631,8 @@ msgstr "English"</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version <br>
-Last updated 2019-07-12 20:15:58 UTC
+Version 20.05<br>
+Last updated 2020-05-04 19:16:43 UTC
 </div>
 </div>
 </body>
