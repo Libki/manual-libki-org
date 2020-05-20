@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2020-05-13</span>
+<span id="revdate">2020-05-20</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2056,6 +2056,9 @@ End your multiline comment after this line with <code>*/</code>.</p>
 <li>
 <p>waiting_holds</p>
 </li>
+<li>
+<p>error codes received from the server</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -2067,7 +2070,25 @@ the given language in use.</p>
 <pre class="highlight"><code>[labels]
 username="Username:"                        ; What text it will say at the username input field
 password="Password:"                        ; What text it will say at the password input field
-waiting_holds="You have holds waiting."     ; This can be used if your client connects to your library's ILS via SIP2.</code></pre>
+waiting_holds="You have holds waiting."     ; This can be used if your client connects to your library's ILS via SIP2.
+INVALID_USER="Login Failed: Username and password do not match" ; What text to show on the login screen when this
+                                            ; error code is received from the server (any error code can be used)</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_labels_translation">Labels translation</h5>
+<div class="paragraph">
+<p>To assign custom text by languages, you can define a different <code>[label]</code> block for each specific supported language. The syntax for the new block is <code>[labels-&lt;lang&gt;]</code> where &lt;lang&gt; is the language code with or without the country part. For example : <code>[labels-en]</code> or <code>[labels-fr_CA]</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[labels-fr_CA]
+username="Username:"                        ; What text it will say at the username input field
+password="Password:"                        ; What text it will say at the password input field</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Labels in <code>[label]</code> will be used as default values if no label is defined in the language block or if the block itself doesn&#8217;t exist.</p>
 </div>
 </div>
 </div>
@@ -2632,7 +2653,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2020-05-13 21:01:03 UTC
+Last updated 2020-05-20 17:11:22 UTC
 </div>
 </div>
 </body>
