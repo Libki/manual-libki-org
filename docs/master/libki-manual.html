@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.12">
 <meta name="author" content="Kyle M Hall">
 <title>Libki Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -48,7 +48,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -63,10 +63,8 @@ img{-ms-interpolation-mode:bicubic}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.stretch{width:100%}
 .subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
 a{color:#2156a5;text-decoration:underline;line-height:inherit}
 a:hover,a:focus{color:#1d4b8f}
 a img{border:0}
@@ -106,19 +104,22 @@ h1{font-size:2.75em}
 h2{font-size:2.3125em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
 h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede;word-wrap:normal}
 table thead,table tfoot{background:#f7f8f7}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt{background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
 .clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
 .clearfix::after,.float-group::after{clear:both}
-:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-:not(pre)>code.nobreak{word-wrap:normal}
-:not(pre)>code.nowrap{white-space:nowrap}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
 pre>code{display:block}
@@ -183,7 +184,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
 #footer-text{color:rgba(255,255,255,.8);line-height:1.44}
 #content{margin-bottom:.625em}
 .sect1{padding-bottom:.625em}
@@ -206,7 +207,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
 .exampleblock>.content>:first-child{margin-top:0}
@@ -216,7 +217,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
@@ -262,21 +263,20 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
-table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
 td.tableblock>.content>:last-child{margin-bottom:-1.25em}
-td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
 table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
 table.frame-sides{border-width:0 1px}
-table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
 table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
@@ -285,7 +285,7 @@ th.valign-top,td.valign-top{vertical-align:top}
 th.valign-bottom,td.valign-bottom{vertical-align:bottom}
 th.valign-middle,td.valign-middle{vertical-align:middle}
 table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th{background:#f7f8f7}
 tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
 p.tableblock>code:only-child{background:none;padding:0}
 p.tableblock{font-size:1em}
@@ -314,6 +314,7 @@ ol.lowergreek{list-style-type:lower-greek}
 .hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
 .colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
 .colist td:not([class]):first-child img{max-width:none}
@@ -386,7 +387,7 @@ a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
 .admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
 .admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:50%;border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
 .conum[data-value] *{color:#fff!important}
 .conum[data-value]+b{display:none}
 .conum[data-value]::after{content:attr(data-value)}
@@ -413,6 +414,7 @@ thead{display:table-header-group}
 svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
 #toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
@@ -445,7 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2020-07-16</span>
+<span id="revdate">2021-03-11</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -975,7 +977,112 @@ The value of <strong>Client registration update delay limit</strong> should be a
 </div>
 </div>
 <div class="sect3">
-<h4 id="_custom_javascript">3.1.4. Custom Javascript</h4>
+<h4 id="_client_power_options">3.1.4. Client power options</h4>
+<div class="sect4">
+<h5 id="_client_power_off_settings">Client power off settings</h5>
+<div class="sect5">
+<h6 id="_power_off_action">Power off action</h6>
+<div class="paragraph">
+<p>Choose whether the "turn off" button and "automatic shutdown" function cause the clients to shutdown completely or be put in a suspend state.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Note that some setups won&#8217;t permit the use of the wake on LAN fonctionnality together with the shutdown option. Suspend must be chosen in this case.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_client_automatic_shutdown_delay">Client automatic shutdown delay</h6>
+<div class="paragraph">
+<p>Libki can automatically send a power off signal to the clients after closing time. Use this setting to control how many minutes after closing this is done. Leave empty to disable.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_client_power_on_settings">Client power on settings</h5>
+<div class="paragraph">
+<p>Libki uses wake on LAN to power on the clients. The machines must be wake on LAN capable and it must be enabled. This might require some configuration in the operating system and/or BIOS settings of the machine.</p>
+</div>
+<div class="sect5">
+<h6 id="_send_the_signal_using">Send the signal using</h6>
+<div class="paragraph">
+<p>By default, the wake on LAN packet is sent by the server. It is possible to configure the setup to use a running Libki client to send the packet to wake up the other machines.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This can be used to wake machines on another network without having to contact a public address on the clients' side.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_host">Host</h6>
+<div class="paragraph">
+<p>This setting is optionnal. If left empty, the limited broadcast address (255.255.255.255) is used. This should be enough when the server is in the same local network as the clients.</p>
+</div>
+<div class="paragraph">
+<p>To target another node or a distant network, specify the IP address or fully qualified domain name (FQDN).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is possible to use wake on LAN over the internet, by forwarding requests to the local broadcast address either via port forwarding at the router level or a forwarding service running on a dedicated machine.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_port">Port</h6>
+<div class="paragraph">
+<p>The port number for the magic packet. This setting is optionnal and defaults to the discard service (9).</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_mac_addresses">MAC addresses</h6>
+<div class="paragraph">
+<p>This is the list of the physical addresses of the network adapters used to wake the machines.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The format is one address per line, where each address uses either no separator or <strong>:</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>======= Automatic power on time</p>
+</div>
+<div class="paragraph">
+<p>Libki can automatically send a wake up signal to each machine whose MAC address is listed in the <strong>MAC addresses</strong> setting. All the machines will be woken up at this time each day. Leave empty to disable.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_custom_javascript">3.1.5. Custom Javascript</h4>
 <div class="sect4">
 <h5 id="_administration_interface_javascript">Administration interface JavaScript</h5>
 <div class="paragraph">
@@ -990,7 +1097,7 @@ The value of <strong>Client registration update delay limit</strong> should be a
 </div>
 </div>
 <div class="sect3">
-<h4 id="_data_retention">3.1.5. Data retention</h4>
+<h4 id="_data_retention">3.1.6. Data retention</h4>
 <div class="sect4">
 <h5 id="_history_anonymization">History anonymization</h5>
 <div class="paragraph">
@@ -1053,7 +1160,7 @@ The value of <strong>Inactive user retention</strong> should be a whole number.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_guest_passes">3.1.6. Guest passes</h4>
+<h4 id="_guest_passes">3.1.7. Guest passes</h4>
 <div class="sect4">
 <h5 id="_prefix_for_guest_passes">Prefix for guest passes</h5>
 <div class="paragraph">
@@ -1130,7 +1237,7 @@ The default value for this setting is:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ils_integration">3.1.7. ILS integration</h4>
+<h4 id="_ils_integration">3.1.8. ILS integration</h4>
 <div class="sect4">
 <h5 id="_patron_hyperlinks">Patron hyperlinks</h5>
 <div class="paragraph">
@@ -1290,7 +1397,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_print_management">3.1.8. Print management</h4>
+<h4 id="_print_management">3.1.9. Print management</h4>
 <div class="sect4">
 <h5 id="_printer_configuration">Printer configuration</h5>
 <div class="paragraph">
@@ -1299,7 +1406,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_reservations">3.1.9. Reservations</h4>
+<h4 id="_reservations">3.1.10. Reservations</h4>
 <div class="sect4">
 <h5 id="_reservation_timeout">Reservation timeout</h5>
 <div class="paragraph">
@@ -1326,13 +1433,13 @@ The value of <strong>Reservation timeout</strong> should be a whole number.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_terms_of_service">3.1.10. Terms of service</h4>
+<h4 id="_terms_of_service">3.1.11. Terms of service</h4>
 <div class="paragraph">
 <p>This setting allows a library to add <em>terms of service</em> for use of computers running the Libki client. Simply adding text of your terms of service in the textbox will cause the terms to be displayed to any person logging into a Libki client. If the person chooses <em>yes</em> the login will proceed as usual. If the person chooses <em>no</em> the login screen will be reset.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_user_settings">3.1.11. User settings</h4>
+<h4 id="_user_settings">3.1.12. User settings</h4>
 <div class="sect4">
 <h5 id="_user_categories">User categories</h5>
 <div class="paragraph">
@@ -1355,7 +1462,7 @@ The value of <strong>Reservation timeout</strong> should be a whole number.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_advanced_settings">3.1.12. Advanced settings</h4>
+<h4 id="_advanced_settings">3.1.13. Advanced settings</h4>
 <div class="sect4">
 <h5 id="_advanced_rules">Advanced rules</h5>
 <div class="paragraph">
@@ -1759,13 +1866,13 @@ set it to <code>http</code> otherwise.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_host">Host</h5>
+<h5 id="_host_2">Host</h5>
 <div class="paragraph">
 <p>Set this to the ip address or FQDN for your Libki server.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_port">Port</h5>
+<h5 id="_port_2">Port</h5>
 <div class="paragraph">
 <p>Set this field to the external port your Libki server is listening on.</p>
 </div>
@@ -2679,7 +2786,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2020-07-16 11:14:25 UTC
+Last updated 2021-03-11 10:36:54 UTC
 </div>
 </div>
 </body>
