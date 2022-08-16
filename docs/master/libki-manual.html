@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2022-08-03</span>
+<span id="revdate">2022-08-16</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1706,6 +1706,28 @@ printers:
     type: PrintManager</code></pre>
 </div>
 </div>
+<div class="sect5">
+<h6 id="_printer_parameteters">Printer parameteters</h6>
+<div class="ulist">
+<ul>
+<li>
+<p>chroming: Required, values are <code>color</code> or <code>monochrome</code></p>
+</li>
+<li>
+<p>physical_printer_name: Required, must exactly match the name of the Windows printer to be used</p>
+</li>
+<li>
+<p>plexing: Required, values are "simplex", "duplexlong" or "duplexshort"</p>
+</li>
+<li>
+<p>type: Required, current options are "PrintManager" or "cups"</p>
+</li>
+<li>
+<p>auto_release: Optional, if set to "yes", prints to this printer will not be held for release, but instead be released automatically if funds are available.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2754,7 +2776,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2022-08-03 14:30:52 UTC
+Last updated 2022-08-16 14:05:15 UTC
 </div>
 </div>
 </body>
