@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2022-08-17</span>
+<span id="revdate">2022-10-05</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1280,6 +1280,7 @@ The default value for this setting is:</p>
     deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="6"></i><b>(6)</b>
     category_field PC <i class="conum" data-value="7"></i><b>(7)</b>
     pattern_personal_name , <i class="conum" data-value="8"></i><b>(8)</b>
+    ILS Koha <i class="conum" data-value="9"></i><b>(9)</b>
 &lt;/SIP&gt;</pre>
 </div>
 </div>
@@ -1317,6 +1318,10 @@ The default value for this setting is:</p>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
 <td>Specify a pattern for splitting lastname and firstname in personal name field(AE) in SIP response</td>
 </tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Can be 'Koha' or 'Evergreen' at this time, controls how waiting holds are calculated for alerting patrons</td>
+</tr>
 </table>
 </div>
 <div class="paragraph">
@@ -1340,7 +1345,8 @@ deny_on:
   - excessive_outstanding_fines
 deny_on_field: "AB:This is the reason we are denying you"
 category_field: PC
-pattern_personal_name: ","</code></pre>
+pattern_personal_name: ","
+ILS: Koha</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1382,11 +1388,14 @@ pattern_personal_name: ","</code></pre>
 <p>deny_on: This can be repeated to deny logins based on the patron information flags detailed in the SIP2 protocol specification.</p>
 </li>
 <li>
-<p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".
-==== LDAP</p>
+<p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ldap">3.1.9. LDAP</h4>
 <div class="paragraph">
 <p>Single Sign-on with other systems can be achieved via LDAP. Settings for LDAP server are currently stored in the <em>libki\_local.conf</em> only, though setting support is expected soon.</p>
 </div>
@@ -1403,9 +1412,8 @@ Make sure the URL beings with http:// or https:// as necessary.
 </table>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_print_management">3.1.9. Print management</h4>
+<h4 id="_print_management">3.1.10. Print management</h4>
 <div class="sect4">
 <h5 id="_printer_configuration">Printer configuration</h5>
 <div class="paragraph">
@@ -1414,7 +1422,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_reservations">3.1.10. Reservations</h4>
+<h4 id="_reservations">3.1.11. Reservations</h4>
 <div class="sect4">
 <h5 id="_reservation_timeout">Reservation timeout</h5>
 <div class="paragraph">
@@ -1441,13 +1449,13 @@ The value of <strong>Reservation timeout</strong> should be a whole number.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_terms_of_service">3.1.11. Terms of service</h4>
+<h4 id="_terms_of_service">3.1.12. Terms of service</h4>
 <div class="paragraph">
 <p>This setting allows a library to add <em>terms of service</em> for use of computers running the Libki client. Simply adding text of your terms of service in the textbox will cause the terms to be displayed to any person logging into a Libki client. If the person chooses <em>yes</em> the login will proceed as usual. If the person chooses <em>no</em> the login screen will be reset.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_user_settings">3.1.12. User settings</h4>
+<h4 id="_user_settings">3.1.13. User settings</h4>
 <div class="sect4">
 <h5 id="_user_categories">User categories</h5>
 <div class="paragraph">
@@ -1470,7 +1478,7 @@ The value of <strong>Reservation timeout</strong> should be a whole number.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_advanced_settings">3.1.13. Advanced settings</h4>
+<h4 id="_advanced_settings">3.1.14. Advanced settings</h4>
 <div class="sect4">
 <h5 id="_advanced_rules">Advanced rules</h5>
 <div class="paragraph">
@@ -2786,7 +2794,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2022-08-17 14:57:42 UTC
+Last updated 2022-10-05 15:46:18 UTC
 </div>
 </div>
 </body>
