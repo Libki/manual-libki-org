@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2023-01-12</span>
+<span id="revdate">2023-03-30</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1282,6 +1282,7 @@ The default value for this setting is:</p>
     pattern_personal_name , <i class="conum" data-value="8"></i><b>(8)</b>
     pattern_personal_name_reverse 1 <i class="conum" data-value="9"></i><b>(9)</b>
     ILS Koha <i class="conum" data-value="10"></i><b>(10)</b>
+    skip_import_personal_name 0 <i class="conum" data-value="11"></i><b>(11)</b>
 &lt;/SIP&gt;</pre>
 </div>
 </div>
@@ -1327,6 +1328,10 @@ The default value for this setting is:</p>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
 <td>Can be 'Koha' or 'Evergreen' at this time, controls how waiting holds are calculated for alerting patrons</td>
 </tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>If set, patron names will not be imported into Libki, only the cardnumber/userid and par</td>
+</tr>
 </table>
 </div>
 <div class="paragraph">
@@ -1351,7 +1356,8 @@ deny_on:
 deny_on_field: "AB:This is the reason we are denying you"
 category_field: PC
 pattern_personal_name: ","
-ILS: Koha</code></pre>
+ILS: Koha
+skip_import_personal_name: 0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1394,6 +1400,9 @@ ILS: Koha</code></pre>
 </li>
 <li>
 <p>deny_on_field: This can be repeated to deny logins if the Specified field does not have a value of "Y".</p>
+</li>
+<li>
+<p>skip_import_personal_name: If enabled, first and last names of patrons will not be pulled from the patron information response and stored in the database</p>
 </li>
 </ul>
 </div>
@@ -2799,7 +2808,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2023-01-12 14:16:19 UTC
+Last updated 2023-03-30 15:42:27 UTC
 </div>
 </div>
 </body>
