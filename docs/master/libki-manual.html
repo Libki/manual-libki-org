@@ -1705,6 +1705,7 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">---
+public_print_release: enabled
 printers:
   color:
     chroming: color
@@ -1743,19 +1744,29 @@ printers:
 <div class="ulist">
 <ul>
 <li>
-<p>chroming: Required, values are <code>color</code> or <code>monochrome</code></p>
+<p>chroming: Required, values are <code>color</code> or <code>monochrome</code>.</p>
 </li>
 <li>
-<p>physical_printer_name: Required, must exactly match the name of the Windows printer to be used</p>
+<p>physical_printer_name: Required, must exactly match the name of the Windows printer to be used.</p>
 </li>
 <li>
-<p>plexing: Required, values are "simplex", "duplexlong" or "duplexshort"</p>
+<p>plexing: Required, values are "simplex", "duplexlong" or "duplexshort".</p>
 </li>
 <li>
-<p>type: Required, current options are "PrintManager" or "cups"</p>
+<p>type: Required, current options are "PrintManager" or "cups".</p>
 </li>
 <li>
 <p>auto_release: Optional, if set to "yes", prints to this printer will not be held for release, but instead be released automatically if funds are available.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_other_parameteters">Other parameteters</h6>
+<div class="ulist">
+<ul>
+<li>
+<p>public_print_release: Top level paramter. If set to 'disabled' patrons will be unable to release their own print jobs, only librarians will be able to do so.</p>
 </li>
 </ul>
 </div>
@@ -2808,7 +2819,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2023-03-30 15:42:27 UTC
+Last updated 2023-03-30 16:51:43 UTC
 </div>
 </div>
 </body>
