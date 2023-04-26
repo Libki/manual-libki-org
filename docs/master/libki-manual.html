@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2023-03-30</span>
+<span id="revdate">2023-04-26</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1283,6 +1283,7 @@ The default value for this setting is:</p>
     pattern_personal_name_reverse 1 <i class="conum" data-value="9"></i><b>(9)</b>
     ILS Koha <i class="conum" data-value="10"></i><b>(10)</b>
     skip_import_personal_name 0 <i class="conum" data-value="11"></i><b>(11)</b>
+    hold_notification 0 <i class="conum" data-value="12"></i><b>(12)</b>
 &lt;/SIP&gt;</pre>
 </div>
 </div>
@@ -1332,6 +1333,10 @@ The default value for this setting is:</p>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>If set, patron names will not be imported into Libki, only the cardnumber/userid and par</td>
 </tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>Disables hold notification if set to 0</td>
+</tr>
 </table>
 </div>
 <div class="paragraph">
@@ -1357,7 +1362,8 @@ deny_on_field: "AB:This is the reason we are denying you"
 category_field: PC
 pattern_personal_name: ","
 ILS: Koha
-skip_import_personal_name: 0</code></pre>
+skip_import_personal_name: 0
+hold_notification: 0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1403,6 +1409,9 @@ skip_import_personal_name: 0</code></pre>
 </li>
 <li>
 <p>skip_import_personal_name: If enabled, first and last names of patrons will not be pulled from the patron information response and stored in the database</p>
+</li>
+<li>
+<p>hold_notification: If set to 0, disables patron hold notifications</p>
 </li>
 </ul>
 </div>
@@ -2819,7 +2828,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2023-03-30 16:51:43 UTC
+Last updated 2023-04-26 16:58:56 UTC
 </div>
 </div>
 </body>
