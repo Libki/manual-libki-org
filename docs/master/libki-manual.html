@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2023-04-26</span>
+<span id="revdate">2023-05-11</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1279,11 +1279,12 @@ The default value for this setting is:</p>
     deny_on excessive_outstanding_fines <i class="conum" data-value="5"></i><b>(5)</b>
     deny_on_field AB:This is the reason we are denying you <i class="conum" data-value="6"></i><b>(6)</b>
     category_field PC <i class="conum" data-value="7"></i><b>(7)</b>
-    pattern_personal_name , <i class="conum" data-value="8"></i><b>(8)</b>
-    pattern_personal_name_reverse 1 <i class="conum" data-value="9"></i><b>(9)</b>
-    ILS Koha <i class="conum" data-value="10"></i><b>(10)</b>
-    skip_import_personal_name 0 <i class="conum" data-value="11"></i><b>(11)</b>
-    hold_notification 0 <i class="conum" data-value="12"></i><b>(12)</b>
+    birthdate_field PB <i class="conum" data-value="8"></i><b>(8)</b>
+    pattern_personal_name , <i class="conum" data-value="9"></i><b>(9)</b>
+    pattern_personal_name_reverse 1 <i class="conum" data-value="10"></i><b>(10)</b>
+    ILS Koha <i class="conum" data-value="11"></i><b>(11)</b>
+    skip_import_personal_name 0 <i class="conum" data-value="12"></i><b>(12)</b>
+    hold_notification 0 <i class="conum" data-value="13"></i><b>(13)</b>
 &lt;/SIP&gt;</pre>
 </div>
 </div>
@@ -1319,22 +1320,26 @@ The default value for this setting is:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Specify a pattern for splitting lastname and firstname in personal name field(AE) in SIP response</td>
+<td>Specify a SIP tag here that contains the user&#8217;s date of birth  in the SIP user lookup response, default is 'PB'</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>If the patrons last name and first name are reversed, this option will correct the order</td>
+<td>Specify a pattern for splitting lastname and firstname in personal name field(AE) in SIP response</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td>Can be 'Koha' or 'Evergreen' at this time, controls how waiting holds are calculated for alerting patrons</td>
+<td>If the patrons last name and first name are reversed, this option will correct the order</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
-<td>If set, patron names will not be imported into Libki, only the cardnumber/userid and par</td>
+<td>Can be 'Koha' or 'Evergreen' at this time, controls how waiting holds are calculated for alerting patrons</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>If set, patron names will not be imported into Libki, only the cardnumber/userid and par</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
 <td>Disables hold notification if set to 0</td>
 </tr>
 </table>
@@ -1360,6 +1365,7 @@ deny_on:
   - excessive_outstanding_fines
 deny_on_field: "AB:This is the reason we are denying you"
 category_field: PC
+birthdate_field: PB
 pattern_personal_name: ","
 ILS: Koha
 skip_import_personal_name: 0
@@ -2828,7 +2834,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2023-04-26 16:58:56 UTC
+Last updated 2023-05-11 10:47:04 UTC
 </div>
 </div>
 </body>
