@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Kyle M Hall">
 <title>Libki Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Kyle M Hall</span><br>
 <span id="email" class="email"><a href="mailto:kyle@kylehall.info">kyle@kylehall.info</a></span><br>
 <span id="revnumber">version ,</span>
-<span id="revdate">2024-04-26</span>
+<span id="revdate">2025-05-12</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -537,7 +537,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_what_is_libki">1.1. What is Libki?</h3>
 <div class="paragraph">
-<p>Libki is a Free Open Source cross-platform pc reservation booking and time management system designed to allow time limited access to computers on a network. Libki is ideally suited for use in locations where a controlled computing environment is paramount such as public access systems, libraries, school computer laboratories and more! It consists of two parts, the Libki server, and the Libki client.</p>
+<p>Libki is a Free Open Source cross-platform PC reservation booking and time management system designed to allow time limited access to computers on a network. Libki is ideally suited for use in locations where a controlled computing environment is paramount such as public access systems, libraries, school computer laboratories and more! It consists of two primary parts: the Libki server, and the Libki client.</p>
+</div>
+<div class="paragraph">
+<p>Libki can also serve as a print management service, allowing users to print from Libki-controlled clients, or through file upload to the Libki Server.</p>
 </div>
 <div class="paragraph">
 <p>Learn more about Libki by visiting the official Libki website, <a href="https://libki.org">libki.org</a>.</p>
@@ -1037,7 +1040,7 @@ This can be used to wake machines on another network without having to contact a
 <div class="sect5">
 <h6 id="_host">Host</h6>
 <div class="paragraph">
-<p>This setting is optionnal. If left empty, the limited broadcast address (255.255.255.255) is used. This should be enough when the server is in the same local network as the clients.</p>
+<p>This setting is optional. If left empty, the limited broadcast address (255.255.255.255) is used. This should be enough when the server is in the same local network as the clients.</p>
 </div>
 <div class="paragraph">
 <p>To target another node or a distant network, specify the IP address or fully qualified domain name (FQDN).</p>
@@ -1058,7 +1061,7 @@ It is possible to use wake on LAN over the internet, by forwarding requests to t
 <div class="sect5">
 <h6 id="_port">Port</h6>
 <div class="paragraph">
-<p>The port number for the magic packet. This setting is optionnal and defaults to the discard service (9).</p>
+<p>The port number for the magic packet. This setting is optional and defaults to the discard service (9).</p>
 </div>
 </div>
 <div class="sect5">
@@ -1453,7 +1456,7 @@ Make sure the URL beings with http:// or https:// as necessary.
 <div class="sect4">
 <h5 id="_reservation_timeout">Reservation timeout</h5>
 <div class="paragraph">
-<p>The amount of time \( in minutes \) that a user has to log into his or her reserved computer. If the user does not log in within the specified time limit, the reserved client will become available again.</p>
+<p>The amount of time in minutes that a user has to log into his or her reserved computer. If the user does not log in within the specified time limit, the reserved client will become available again.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1717,7 +1720,7 @@ If a criteria is missing in a rule, then it is not used as part if the matching 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">---
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">---
 public_print_release: enabled
 printers:
   color:
@@ -1757,7 +1760,7 @@ printers:
     cost_per_page: .05
   monochrome-duplex-short:
     chroming: monochrome
-    public_printer_name: Monochrome (Deplex/Short)
+    public_printer_name: Monochrome (Duplex/Short)
     plexing: duplexshort
     type: PrintManager
     cost_per_page: .05</code></pre>
@@ -1815,7 +1818,7 @@ printers:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">cups:
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">cups:
       server: localhost
       username: print
 
@@ -1852,8 +1855,9 @@ Once the Libki client has been started, it will watch those directories for PDF 
 When the client sees a file, it will uploaded it to the server with the matching printer name.</p>
 </div>
 <div class="paragraph">
-<p>You can use any PDF print driver to print PDF file to these directories.
-A custom PDF print driver for Libki is in development, but not yet available.</p>
+<p>You can use any PDF print driver to print PDF file to these directories.  Two viable, tested options are:
+ - <a href="https://github.com/Libki/PdfScribe">PDFScribe</a>
+ - <a href="https://github.com/clawsoftware/clawPDF">ClawPDF</a></p>
 </div>
 </div>
 </div>
@@ -1904,7 +1908,7 @@ set it to <code>http</code> otherwise.</p>
 <div class="sect4">
 <h5 id="_port_2">Port</h5>
 <div class="paragraph">
-<p>Set this field to the external port your Libki server is listening on.</p>
+<p>Set this field to the external port your Libki server is listening on (80 for http, 443 for https)</p>
 </div>
 </div>
 <div class="sect4">
@@ -2840,6 +2844,9 @@ msgstr "English"</code></pre>
 <li>
 <p>Luke Fritz &lt;<a href="mailto:ldfritz@gmail.com">ldfritz@gmail.com</a>&gt;</p>
 </li>
+<li>
+<p>Ian Walls &lt;<a href="mailto:ian@bywatersolutions.com">ian@bywatersolutions.com</a>&gt;</p>
+</li>
 </ul>
 </div>
 </div>
@@ -2849,7 +2856,7 @@ msgstr "English"</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version <br>
-Last updated 2024-04-26 17:12:53 UTC
+Last updated 2025-05-12 16:36:59 UTC
 </div>
 </div>
 </body>
